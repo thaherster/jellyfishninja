@@ -15,7 +15,7 @@
        <img src="images/jellyfish.png">
       </div>
       <div>
-        <form action="/attempt_login" method="post">
+        <form onsubmit="return validateSignInForm()" method="post">
           <fieldset>
             <input type="email" id="email" name="email" placeholder="Email" />
             <br>
