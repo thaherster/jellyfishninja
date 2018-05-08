@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link href="https://fonts.googleapis.com/css?family=Offside" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <div class="Landing">
+    <header>
+      <div class="logo">
+        <a href="/" ><img src="images/jellyfish.png"></a>
+      </div>
+    </header>
+      <% if (messages.success) { %>
+    <div class="flash flash-success"><%= messages.success %></div>
+      <% } %>
+
+    <h1>Working With Forms in Node.js</h1>
+
+  </div>
+
+
+
+  </body>
+</html>

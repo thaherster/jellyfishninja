@@ -4,13 +4,31 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var body,validationResult = require('express-validator/check');
-var sanitizeBody  = require('express-validator/filter');
+var validator = require('express-validator');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var flash = require('express-flash');
+var helmet = require('helmet');
 
+var middlewares = [
+    helmet(),
+    bodyParser.urlencoded({ extended: true }),
+    validator(),
+    cookieParser(),
+    session({
+        secret: 'super-secret-key',
+        key: 'super-secret-cookie',
+        resave: false,
+        saveUninitialized: false,
+        cookie: { maxAge: 60000 }
+    }),
+    flash()
+];
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
+var dashboardRouter = require('./routes/dashboard');
 
 var app = express();
 
@@ -23,10 +41,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(middlewares);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
+app.use('/dashboard', dashboardRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -43,5 +63,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;

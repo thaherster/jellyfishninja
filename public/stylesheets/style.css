@@ -128,6 +128,15 @@ input {
   border-bottom: 1px solid black;
 }
 
+.error{
+  font-size: 8px ;
+
+}
+
+h2 {
+  text-align: center;
+}
+
 
 
 

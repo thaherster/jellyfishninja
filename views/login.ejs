@@ -15,11 +15,23 @@
        <img src="images/jellyfish.png">
       </div>
       <div>
-        <form onsubmit="return validateSignInForm()" method="post">
+
+        <form method="post" action="/login" novalidate>
           <fieldset>
-            <input type="email" id="email" name="email" placeholder="Email" />
+            <div class="form-field <%= errors.email ? 'form-field-invalid' : '' %>">
+
+            <input type="email" id="email" name="email" placeholder="Email" value="<%= data.email %>"/>
+                <% if (errors.email) { %>
+              <div class="error"><%= errors.email.msg %></div>
+                <% } %>
+            </div>
             <br>
-            <input  type="password" id="password" placeholder="Password" />
+            <div class="form-field <%= errors.message ? 'form-field-invalid' : '' %>">
+            <input  type="password" id="password" name="password" placeholder="Password" value="<%= data.password %>"/>
+                <% if (errors.password) { %>
+              <div class="error"><%= errors.password.msg %></div>
+                <% } %>
+            </div>
             <br>
             <input class="login_button" type="submit" value="Login" />
           </fieldset>
