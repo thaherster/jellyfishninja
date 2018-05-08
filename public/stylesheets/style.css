@@ -1,8 +1,135 @@
+/*//Boxed Round HeavyTipo PépelFontspring*/
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 0px;
+  margin: 0px;
+  font-size: 14px ;
+  height: 100%;
+  font-family: 'Offside', cursive;
+}
+.Landing {
+  margin: 20px auto;
+  width: 1100px;
+  height: auto;
+  object-fit: contain;
+  background-color: #ffffff;
+
 }
 
-a {
-  color: #00B7FF;
+
+
+
+.logo {
+  width: 200px;
+  height: 100px;
+  float: left;
 }
+.logo img {
+  width: 100%;
+  display: block;
+}
+
+
+a.Rectangle-2 {
+  width: 200px;
+  padding: 10px 0px;
+  border-radius: 60px;
+  font-family: 'Offside', cursive;
+  background-color: #000000;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  font-size: 16px;
+  color: white;
+  float: right;
+  text-decoration: none;
+  text-align: center;
+  margin-top: 25px;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+
+
+}
+.login_outer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+
+}
+
+.loginbox {
+  width: max-content;
+  padding: 10px;
+  margin: auto;
+  color: black;
+  border: solid 1px #000000;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: max-content;
+}
+.logo_login {
+  width: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 85px;
+}
+
+.logo_login img {
+  width: 100%;
+  object-fit: contain;
+  display: inline-block;
+
+
+}
+.close {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  background-color: rgba(0, 0, 0, 0);
+}
+.login_button {
+  width: 200px;
+  padding: 10px 0px;
+  border-radius: 60px;
+  font-family: 'Offside', cursive;
+  background-color: #000000;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  margin-top: 25px;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+}
+label {
+  display: block;
+  text-align: center;
+  margin: auto;
+}
+fieldset {
+  border: none;
+}
+input {
+  width: 100%;
+  font-family: 'Offside', cursive;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: block;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
+}
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link href="https://fonts.googleapis.com/css?family=Offside" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <div class="login_outer">
+
+    <div class="loginbox">
+      <a href="/"> <img src="images/close.png" class="close"></a>
+      <div class="logo_login">
+       <img src="images/jellyfish.png">
+      </div>
+      <div>
+        <form action="/attempt_login" method="post">
+          <fieldset>
+            <input type="email" id="email" name="email" placeholder="Email" />
+            <br>
+            <input  type="password" id="password" placeholder="Password" />
+            <br>
+            <input class="login_button" type="submit" value="Login" />
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  </body>
+</html>
