@@ -9,6 +9,18 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var flash = require('express-flash');
 var helmet = require('helmet');
+var firebase = require("firebase");
+
+var config = {
+    apiKey: "AIzaSyBLWcdEobIcG_nqnqpcFvDPOrBWByN2oXQ",
+    authDomain: "jellyfishninja-899d1.firebaseapp.com",
+    databaseURL: "https://jellyfishninja-899d1.firebaseio.com",
+    projectId: "jellyfishninja-899d1",
+    storageBucket: "jellyfishninja-899d1.appspot.com",
+    messagingSenderId: "379489347774"
+};
+firebase.initializeApp(config);
+// global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 var middlewares = [
     helmet(),
@@ -24,6 +36,7 @@ var middlewares = [
     }),
     flash()
 ];
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -63,6 +76,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 
 module.exports = app;
