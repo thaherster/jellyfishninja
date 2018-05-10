@@ -25,8 +25,8 @@ router.post('/', [
         .trim()
         .normalizeEmail(),
     check('password')
-        .isLength({min:6})
-        .withMessage(' min 6')
+        .isLength({min:1})
+        .withMessage(' min 1')
         .trim()
 ],function(req, res, next) {
     var errors = validationResult(req);

@@ -1,23 +1,597 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link href="https://fonts.googleapis.com/css?family=Offside" rel="stylesheet">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-  <div class="Landing">
-    <header>
-      <div class="logo">
-        <a href="/" ><img src="images/jellyfish.png"></a>
-      </div>
-  <a href="/login" class="Rectangle-2"  align="right">Login</a>
-    </header>
+<html lang="en">
+<!--
+	Bent - Bootstrap Landing Page Template by Dcrazed
+	Site: https://dcrazed.com/bent-app-landing-page-template/
+	Free for personal and commercial use under GNU GPL 3.0 license.
+-->
 
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jellyfish | Ninja</title>
+  <!-- Google Font -->
+  <link href='https://fonts.googleapis.com/css?family=Raleway:500,600,700,800,900,400,300' rel='stylesheet' type='text/css'>
+
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900,300italic,400italic' rel='stylesheet' type='text/css'>
+  <!-- Bootstrap -->
+  <link href="bentcss/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Owl Carousel Assets -->
+  <link href="bentcss/owl.carousel.css" rel="stylesheet">
+  <link href="bentcss/owl.theme.css" rel="stylesheet">
+
+
+  <!-- Pixeden Icon Font -->
+  <link rel="stylesheet" href="css/Pe-icon-7-stroke.css">
+
+  <!-- Font Awesome -->
+  <link href="bentcss/font-awesome.min.css" rel="stylesheet">
+
+
+  <!-- PrettyPhoto -->
+  <link href="bentcss/prettyPhoto.css" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+  <!-- Style -->
+  <link href="bentcss/style.css" rel="stylesheet">
+
+  <link href="bentcss/animate.css" rel="stylesheet">
+  <!-- Responsive CSS -->
+  <link href="bentcss/responsive.css" rel="stylesheet">
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+<!-- PRELOADER -->
+<div class="spn_hol">
+  <div class="spinner">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div>
+</div>
+
+<!-- END PRELOADER -->
+
+<!-- =========================
+    START ABOUT US SECTION
+============================== -->
+<section class="header parallax home-parallax page" id="HOME">
+  <h2></h2>
+  <div class="section_overlay">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" >
+            <img src="images/jellyfish.png" alt="Logo">
+          </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <!-- NAV -->
+            <li><a href="#HOME">HOME</a> </li>
+            <li><a href="#FEATURES">FEATURES </a> </li>
+            <li><a href="#PRICING">PRICING</a></li>
+            <li><a href="#DOWNLOAD">DOWNLOAD </a> </li>
+            <li><a href="/login">LOGIN </a> </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container- -->
+    </nav>
+
+    <div class="container home-container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="logo text-center">
+            <!-- LOGO -->
+            <img width="125" height="55" src="images/jellyfish.png" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-sm-8">
+          <div class="home_text">
+            <!-- TITLE AND DESC -->
+            <h1>Brilliant Landing Page Design. Executed for Your App</h1>
+            <p>Now create a beautiful, app landing page.</p>
+
+            <div class="download-btn">
+              <!-- BUTTON -->
+              <a class="btn home-btn wow fadeInLeft" href="#DOWNLOAD">Download</a>
+              <a class="tuor btn wow fadeInRight" href="#FEATURES">Take a tour <i class="fa fa-angle-down"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-md-offset-1 col-sm-4">
+          <div class="home-iphone">
+            <img src="bentimages/iPhone_Home.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- END HEADER SECTION -->
+
+
+
+
+<!-- =========================
+    START ABOUT US SECTION
+============================== -->
+
+
+<section class="about page" id="FEATURES">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <!-- ABOUT US SECTION TITLE-->
+        <div class="section_title">
+          <h2>Features</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="inner_about_area">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="about_phone wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
+            <!-- PHONE -->
+            <img src="bentimages/about_iphone.png" alt="">
+          </div>
+        </div>
+        <div class="col-md-6  wow fadeInRight" data-wow-duration="1s" data-wow-delay=".5s">
+          <!-- TITLE -->
+          <div class="inner_about_title">
+            <h2>Why we are best <br> for you</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+          <div class="inner_about_desc">
+
+            <!-- SINGLE DESC -->
+            <div class="single_about_area fadeInUp wow" data-wow-duration=".5s" data-wow-delay="1s">
+              <!-- ICON -->
+              <div><i class="pe-7s-timer"></i></div>
+              <!-- HEADING DESCRIPTION -->
+              <h3>Lorem ipsum dolor sit amet</h3>
+              <p>Cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit.</p>
+            </div>
+            <!-- END SINGLE DESC -->
+
+
+            <!-- SINGLE DESC -->
+            <div class="single_about_area fadeInUp wow" data-wow-duration=".5s" data-wow-delay="1.5s">
+              <!-- ICON -->
+              <div><i class="pe-7s-target"></i></div>
+              <!-- HEADING DESCRIPTION -->
+              <h3>Lorem ipsum dolor sit amet</h3>
+              <p>Cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit.</p>
+            </div>
+            <!-- END SINGLE DESC -->
+
+
+            <!-- SINGLE DESC -->
+            <div class="single_about_area fadeInUp wow" data-wow-duration=".5s" data-wow-delay="2s">
+              <!-- ICON -->
+              <div><i class="pe-7s-stopwatch"></i></div>
+              <!-- HEADING DESCRIPTION -->
+              <h3>Lorem ipsum dolor sit amet</h3>
+              <p>Cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit.</p>
+            </div>
+            <!-- END SINGLE DESC -->
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
+</section>
+<!-- End About Us -->
 
 
-  </body>
+
+
+<!-- =========================
+    START TESTIMONIAL SECTION
+============================== -->
+
+<section id="TESTIMONIAL" class="testimonial parallax">
+  <div class="section_overlay">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 wow bounceInDown">
+          <div id="carousel-example-caption-testimonial" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#carousel-example-caption-testimonial" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel-example-caption-testimonial" data-slide-to="1"></li>
+              <li data-target="#carousel-example-caption-testimonial" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <div class="item active">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <!-- IMAGE -->
+                      <img src="bentimages/client_1.png" alt="">
+                      <div class="testimonial_caption">
+                        <!-- DESCRIPTION -->
+                        <h2>Dan Harmon</h2>
+                        <h4><span>SR. UI Designer,</span> Dcrazed</h4>
+                        <p>“Lorem ipsum dolor sit amet, consectetur adipisicing elit, do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.”</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <!-- IMAGE -->
+                      <img src="bentimages/client_2.png" alt="">
+                      <div class="testimonial_caption">
+                        <!-- DESCRIPTION -->
+                        <h2>Allie Kingsley</h2>
+                        <h4><span>SR. Content Strategist,</span> Designscrazed</h4>
+                        <p>“Lorem ipsum dolor sit amet, consectetur adipisicing elit, do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.”</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <!-- IMAGE -->
+                      <img src="bentimages/client_3.png" alt="">
+                      <div class="testimonial_caption">
+                        <!-- DESCRIPTION -->
+                        <h2>Joel Mchale</h2>
+                        <h4><span>SR. Developer,</span> Treehouse</h4>
+                        <p>“Lorem ipsum dolor sit amet, consectetur adipisicing elit, do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.”</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- END TESTIMONIAL SECTION -->
+
+
+
+<!-- =========================
+     START FEATURES
+============================== -->
+<section id="PRICING" class="features page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <!-- FEATURES SECTION TITLE -->
+        <div class="section_title wow fadeIn" data-wow-duration="1s">
+          <h2>Pricing</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+        </div>
+        <!-- END FEATURES SECTION TITLE -->
+      </div>
+    </div>
+  </div>
+
+  <div class="feature_inner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 right_no_padding wow fadeInLeft" data-wow-duration="1s">
+          <!-- FEATURE -->
+
+          <div class="left_single_feature">
+            <!-- ICON -->
+            <div><span class="pe-7s-like"></span></div>
+
+            <!-- FEATURE HEADING AND DESCRIPTION -->
+            <h3>Creative Design<span>/</span></h3>
+            <p>Lorem ipsum dolor, consectetur sed do adipisicing elit, sed do eiusmod tempor incididunt</p>
+          </div>
+
+          <!-- END SINGLE FEATURE -->
+
+
+          <!-- FEATURE -->
+          <div class="left_single_feature">
+            <!-- ICON -->
+            <div><span class="pe-7s-science"></span></div>
+
+            <!-- FEATURE HEADING AND DESCRIPTION -->
+            <h3>Modern Look<span>/</span></h3>
+            <p>Lorem ipsum dolor, consectetur sed do adipisicing elit, sed do eiusmod tempor incididunt</p>
+          </div>
+          <!-- END SINGLE FEATURE -->
+
+
+          <!-- FEATURE -->
+          <div class="left_single_feature">
+            <!-- ICON -->
+            <div><span class="pe-7s-look"></span></div>
+
+            <!-- FEATURE HEADING AND DESCRIPTION -->
+            <h3>Minimal Layout<span>/</span></h3>
+            <p>Lorem ipsum dolor, consectetur sed do adipisicing elit, sed do eiusmod tempor incididunt</p>
+          </div>
+          <!-- END SINGLE FEATURE -->
+
+        </div>
+        <div class="col-md-4">
+          <div class="feature_iphone">
+            <!-- FEATURE PHONE IMAGE -->
+            <img class="wow bounceIn" data-wow-duration="1s" src="bentimages/iPhone02.png" alt="">
+          </div>
+        </div>
+        <div class="col-md-4 left_no_padding wow fadeInRight" data-wow-duration="1s">
+
+          <!-- FEATURE -->
+          <div class="right_single_feature">
+            <!-- ICON -->
+            <div><span class="pe-7s-monitor"></span></div>
+
+            <!-- FEATURE HEADING AND DESCRIPTION -->
+            <h3><span>/</span>Retina ready</h3>
+            <p>Lorem ipsum dolor, consectetur sed do adipisicing elit, sed do eiusmod tempor incididunt</p>
+          </div>
+          <!-- END SINGLE FEATURE -->
+
+
+          <!-- FEATURE -->
+          <div class="right_single_feature">
+            <!-- ICON -->
+            <div><span class="pe-7s-phone"></span></div>
+
+            <!-- FEATURE HEADING AND DESCRIPTION -->
+            <h3><span>/</span>Responsive Ready</h3>
+            <p>Lorem ipsum dolor, consectetur sed do adipisicing elit, sed do eiusmod tempor incididunt</p>
+          </div>
+          <!-- END SINGLE FEATURE -->
+
+
+          <!-- FEATURE -->
+          <div class="right_single_feature">
+            <!-- ICON -->
+            <div><span class="pe-7s-gleam"></span></div>
+
+            <!-- FEATURE HEADING AND DESCRIPTION -->
+            <h3><span>/</span>Clean Code</h3>
+            <p>Lorem ipsum dolor, consectetur sed do adipisicing elit, sed do eiusmod tempor incididunt</p>
+          </div>
+          <!-- END SINGLE FEATURE -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END FEATURES SECTION -->
+
+
+
+<!-- =========================
+     START CALL TO ACTION
+============================== -->
+<div class="call_to_action">
+  <div class="container">
+    <div class="row wow fadeInLeftBig" data-wow-duration="1s">
+      <div class="col-md-9">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et olore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+      </div>
+      <div class="col-md-3">
+        <a class="btn btn-primary btn-action" href="#" role="button">Download Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- END CALL TO ACTION -->
+
+
+
+
+
+
+<!-- =========================
+     Start FUN FACTS
+============================== -->
+
+
+<section class="fun_facts parallax">
+  <div class="section_overlay">
+    <div class="container wow bounceInLeft" data-wow-duration="1s">
+      <div class="row text-center">
+        <div class="col-md-3">
+          <div class="single_fun_facts">
+            <i class="pe-7s-cloud-download"></i>
+            <h2><span  class="counter_num">699</span> <span>+</span></h2>
+            <p>Projects</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="single_fun_facts">
+            <i class="pe-7s-look"></i>
+            <h2><span  class="counter_num">1999</span> <span>+</span></h2>
+            <p>Uploads</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="single_fun_facts">
+            <i class="pe-7s-comment"></i>
+            <h2><span  class="counter_num">199</span> <span>+</span></h2>
+            <p>Deployment</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="single_fun_facts">
+            <i class="pe-7s-cup"></i>
+            <h2><span  class="counter_num">10</span> <span>+</span></h2>
+            <p>Feedbacks</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- END FUN FACTS -->
+
+
+
+
+<!-- =========================
+     START DOWNLOAD NOW
+============================== -->
+<section class="download page" id="DOWNLOAD">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <!-- DOWNLOAD NOW SECTION TITLE -->
+        <div class="section_title">
+          <h2>download now</h2>
+          <p>Download the .APK destribution free app in all your testing devices from the GooglePlay Store.</p>
+        </div>
+        <!--END DOWNLOAD NOW SECTION TITLE -->
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="download_screen text-center wow fadeInUp" data-wow-duration="1s">
+          <img src="bentimages/download_screen.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="available_store">
+    <div class="container  wow bounceInRight" data-wow-duration="1s">
+      <div class="col-md-6">
+        <div class="available_title">
+          <h2>Available on</h2>
+          <p>GooglePlay</p>
+        </div>
+      </div>
+
+      <!-- DOWNLOADABLE STORE -->
+      <div class="col-md-6">
+        <div class="row">
+          <a href="">
+            <div class="col-md-4 no_padding">
+
+            </div>
+          </a>
+          <div class="col-md-4 no_padding">
+            <a href="">
+              <div class="single_store">
+                <i class="fa fa-android"></i>
+                <div class="store_inner">
+                  <h2>ANDROID</h2>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4 no_padding">
+            <a href="">
+
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- END DOWNLOADABLE STORE -->
+    </div>
+  </div>
+</section>
+<!-- END DOWNLOAD -->
+
+
+
+
+<!-- =========================
+     FOOTER
+============================== -->
+
+<section class="copyright">
+  <h2></h2>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="copy_right_text">
+          <!-- COPYRIGHT TEXT -->
+          <p>Copyright &copy; 2018. All Rights Reserved.</p>
+        </div>
+
+      </div>
+
+      <div class="col-md-6">
+        <div class="scroll_top">
+          <a href="#HOME"><i class="fa fa-angle-up"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END FOOTER -->
+
+
+<!-- =========================
+     SCRIPTS
+============================== -->
+
+
+<script src="bentjs/jquery.min.js"></script>
+<script src="bentjs/bootstrap.min.js"></script>
+<script src="bentjs/owl.carousel.js"></script>
+<script src="bentjs/jquery.fitvids.js"></script>
+<script src="bentjs/smoothscroll.js"></script>
+<script src="bentjs/jquery.parallax-1.1.3.js"></script>
+<script src="bentjs/jquery.prettyPhoto.js"></script>
+<script src="bentjs/jquery.ajaxchimp.min.js"></script>
+<script src="bentjs/jquery.ajaxchimp.langs.js"></script>
+<script src="bentjs/wow.min.js"></script>
+<script src="bentjs/waypoints.min.js"></script>
+<script src="bentjs/jquery.counterup.min.js"></script>
+<script src="bentjs/script.js"></script>
+
+
+</body>
 </html>
