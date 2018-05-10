@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <link href="https://fonts.googleapis.com/css?family=Offside" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<div class="login_outer">
+
+  <div class="loginbox">
+    <a href="/"> <img src="images/close.png" class="close"></a>
+    <div class="logo_login">
+      <img src="images/jellyfish.png">
+    </div>
+    <div>
+
+      <form method="post" action="/register" novalidate>
+        <div><h2>Sign Up</h2></div>
+        <fieldset>
+          <br>
+          <div class="form-field <%= errors.email ? 'form-field-invalid' : '' %>">
+
+            <input type="email" id="email" name="email" placeholder="Email" autocomplete="on" value="<%= data.email %>" maxlength="30"/>
+              <% if (errors.email) { %>
+            <div class="error"><%= errors.email.msg %></div>
+              <% } %>
+          </div>
+          <br>
+          <div class="form-field <%= errors.message ? 'form-field-invalid' : '' %>">
+            <input  type="password" id="password" name="password" placeholder="Password" autocomplete="on" value="<%= data.password %>" maxlength="20"/>
+              <% if (errors.password) { %>
+            <div class="error"><%= errors.password.msg %></div>
+              <% } %>
+
+          </div>
+          <br>
+          <div class="error"><%= errorMessage %></div>
+
+          <br>
+          <input class="login_button" type="submit" value="Sign Up" />
+          <br>
+          <div>
+            <a href="/login" class="Forgot-Password">Already have an account? Sign in now.</a>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

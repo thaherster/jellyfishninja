@@ -4,12 +4,11 @@ var firebase = require('firebase/app'); require('firebase/auth');
 
 router.get('/', isAuthenticated,function(req, res, next) {
 
-
-
-
-           return res.render('dashboard', { title: 'Jellyfish Ninja' });
-
-
+    var user = firebase.auth().currentUser;
+           return res.render('dashboard',
+               { title: 'Jellyfish Ninja',
+                   useremail:user.email
+               });
 });
 
 function isAuthenticated(req, res, next) {
@@ -19,9 +18,6 @@ function isAuthenticated(req, res, next) {
     if (user) {
         // User is signed in.
         return next();
-
-
-
 
     } else {
         // No user is signed in.

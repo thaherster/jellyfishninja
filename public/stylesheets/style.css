@@ -14,11 +14,14 @@ body {
   background-color: #ffffff;
 
 }
+html {
+  height: 100%;
+}
 
 .Dash {
-  margin: 0px auto;
-  width: 1100px;
-  height: auto;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   background-color: #ffffff;
 
@@ -146,29 +149,153 @@ h2 {
   text-align: center;
 }
 
+
+*{
+  box-sizing: border-box;
+}
 .top {
-  position:absolute;
-  left:261px; right:0;
-  width: 1178px;
+  right:0;
+  float: left;
+  width: 100%;
   height: 60px;
   background-color: #ffffff;
   border: solid 1px #666666;
 }
 .left {
-  position:absolute;
-  left:0; top:0px; bottom: 0;
+  left:0; top:0; bottom: 0;
   width: 261px;
+  padding-top: 5px;
+  float: left;
   height: 100%;
   background-color: #ffffff;
   border: solid 1px #666666;
 }
-.main {
-  position: absolute;
+.right{
+  width: 100%;
   height: 100%;
+  padding-left: 261px;
+  padding-bottom: 60px;
+}
+.main {
   background-color: #ffffff;
-  left:265px; top:65px; right:0; bottom:0;
+  float: left;
+  height: 100%;
+  width: 100%;
+  border: solid 1px #666666;
+
 }
 
 
 
+#currentUser .avatarFrame {
+  width: 36px;
+  height: 36px;
+}
 
+.avatarFrame {
+  border-radius: 50%;
+  float: right;
+  margin: 10px;
+  background-size: contain;
+  background: #fff no-repeat center;
+}
+
+.box{
+  position: absolute;
+  width: 200px;
+  top: 0;
+  right: 0;
+  margin-top: 50px;
+  margin-right: 10px;
+  background:  #ffffff;
+  border: solid 1px #666666;
+  display:none;
+}
+.box-inner{
+  padding: 10px;
+}
+
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  margin-top: 20px;
+}
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar-wrapper .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+.navbar-wrapper .navbar {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.navbar-content
+{
+  width: 80%;
+  padding: 5px;
+}
+.navbar-content:before, .navbar-content:after
+{
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.navbar-nav.navbar-right:last-child {
+  margin-right: 15px !important;
+}
+.navbar-footer
+{
+  background-color: #e8e8e8;
+}
+.navbar-footer-content { padding:15px 15px 15px 15px; }
+.dropdown-menu {
+  padding: 5px;
+  overflow: hidden;
+}
+
+a.btn {
+  padding: 10px 0;
+  font-family: 'Offside', cursive;
+  font-size: 12px;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  margin: 5px;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+
+
+}
+.text-muted{
+  font-size: 10px;
+  font-family: "Arial Black";
+  margin: auto;
+  width: 100%;
+}
+
+.Forgot-Password {
+  width: 126px;
+  height: 16px;
+  font-family: 'Offside', cursive;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  text-decoration: none;
+  text-align: center;
+  letter-spacing: normal;
+  color: #000000;
+}
+.dash_title {
+  margin-left: 10px;
+  position: absolute;
+}
