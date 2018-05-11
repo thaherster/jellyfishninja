@@ -3,7 +3,7 @@ var router = express.Router();
 var firebase = require('firebase/app'); require('firebase/auth');
 var mw = require('./my-middleware.js').is;
 /* GET home page. */
-router.get('/', isAuthenticated,function(req, res, next) {
+router.get('/',function(req, res, next) {
 
     return res.render('index', { title: 'Jellyfish Ninja' });
 
