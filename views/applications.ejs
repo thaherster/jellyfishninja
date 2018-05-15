@@ -15,6 +15,7 @@
     <link href="../dashassets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="../dashassets/css/demo.css" rel="stylesheet" />
+    <link href="../dashassets/css/dropify.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel='stylesheet'>
@@ -264,7 +265,11 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>APK</label>
-                                                    <br><label class="label">Drag and Drop or click to upload the latest .apk file here</label>
+                                                <input type="file" class="dropify" data-default-file=""
+                                                       data-height="300" data-show-remove="false" data-show-loader="true"
+                                                       data-allowed-file-extensions="apk" />
+                                                <!--onchange-->
+                                                <!--https://stackoverflow.com/questions/41304405/firebase-storage-web-how-to-upload-a-file-->
 
                                             </div>
                                         </div>
@@ -335,5 +340,23 @@
 <script src="../dashassets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="../dashassets/js/demo.js"></script>
+<script src="../dashassets/js/dropify.js"></script>
+
+<script>
+
+    var drEvent = $('.dropify').dropify({
+        messages: {
+            'default': 'Drag and Drop or click to upload the latest .apk file here',
+            'replace': 'Drag and Drop or click to replace with the latest .apk file here',
+            'remove':  'Remove',
+            'error':   'Ooops, something wrong happended.'
+        }
+    });
+
+    drEvent.on('dropify.errors', function(event, element){
+        alert('Has Errors!');
+    });
+
+</script>
 
 </html>

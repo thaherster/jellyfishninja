@@ -9,6 +9,7 @@
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "dropify": "^0.2.2",
     "ejs": "~2.5.7",
     "express": "~4.16.0",
     "express-flash": "git://github.com/RGBboy/express-flash.git",
