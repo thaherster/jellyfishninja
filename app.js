@@ -10,7 +10,6 @@ var session = require('express-session');
 var flash = require('express-flash');
 var helmet = require('helmet');
 var firebase = require("firebase");
-
 var config = {
     apiKey: "AIzaSyBLWcdEobIcG_nqnqpcFvDPOrBWByN2oXQ",
     authDomain: "jellyfishninja-899d1.firebaseapp.com",
@@ -19,8 +18,11 @@ var config = {
     storageBucket: "jellyfishninja-899d1.appspot.com",
     messagingSenderId: "379489347774"
 };
+
+
+
 firebase.initializeApp(config);
-// global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 var middlewares = [
     helmet(),
@@ -50,6 +52,7 @@ var notificationsRouter = require('./routes/notifications');
 var applicationsRouter = require('./routes/applications');
 var reportsRouter = require('./routes/reports');
 var upgradeRouter = require('./routes/upgrade');
+var uploadRouter = require('./routes/upload');
 
 var app = express();
 
@@ -76,6 +79,7 @@ app.use('/notifications', notificationsRouter);
 app.use('/applications', applicationsRouter);
 app.use('/reports',reportsRouter);
 app.use('/upgrade', upgradeRouter);
+app.use('/upload', uploadRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
