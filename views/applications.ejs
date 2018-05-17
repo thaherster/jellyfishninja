@@ -240,7 +240,7 @@
                                 <p class="category">Fill in all the fields below to deploy a new application to all your testing devices.</p>
                             </div>
                             <div class="card-content">
-                                <form id="upload" action="/upload" method="post" enctype="multipart/form-data">
+                                <form id="uploadForm"  method="post" enctype="multipart/form-data">
 
                                     <div class="row">
                                         <div class="col-md-6">
@@ -286,7 +286,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary pull-right">Create</button>
+                                    <button id="submitbut" type="submit" class="btn btn-primary pull-right">Create</button>
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
@@ -364,6 +364,49 @@
         }
     });
     $(".spn_hol").hide();
+
+    $("#uploadForm").on("submit", function(){
+        //Code: Action (like ajax...)
+        var form = $('#uploadForm')[0];
+        var data = new FormData(form);
+        $(".spn_hol").show();
+
+
+        // disabled the submit button
+        $("#submitbut").prop("disabled", true);
+
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "/upload",
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+                $(".spn_hol").hide();
+
+                // $("#result").text(data);
+                console.log("SUCCESS : ", data);
+                alert("SUCESS");
+                $("#btnSubmit").prop("disabled", false);
+                $('#uploadForm')[0].reset();
+                $('#apkfile').reset();
+            },
+            error: function (e) {
+                $(".spn_hol").hide();
+                alert("ERROR");
+
+                // $("#result").text(e.responseText);
+                console.log("ERROR : ", e);
+                $("#btnSubmit").prop("disabled", false);
+
+            }
+        });
+        return false;
+
+    })
 
     // $("#upload").hide();
 

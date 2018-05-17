@@ -38,6 +38,7 @@ var upload = multer({storage: multerS3({
 
 
 router.post('/', isAuthenticated,upload.single('apkfile'),function(req, res, next) {
+
     var user = firebase.auth().currentUser;
 
     var appInfo = req.body;
@@ -59,8 +60,9 @@ router.post('/', isAuthenticated,upload.single('apkfile'),function(req, res, nex
 
 
     console.log('END');
+    // $(".spn_hol").hide();
 
-    // res.sendStatus(200);
+    res.sendStatus(200);
 
 
 });
