@@ -6,12 +6,14 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "aws-sdk": "^2.241.1",
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dropify": "^0.2.2",
     "ejs": "~2.5.7",
     "express": "^4.16.3",
+    "express-fileupload": "^0.4.0",
     "express-flash": "git://github.com/RGBboy/express-flash.git",
     "express-session": "^1.15.6",
     "express-validator": "^5.2.0",
@@ -19,6 +21,7 @@
     "helmet": "^3.12.0",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
-    "multer": "^1.3.0"
+    "multer": "^1.3.0",
+    "multer-s3": "^2.7.0"
   }
 }

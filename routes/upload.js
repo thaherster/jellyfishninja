@@ -1,58 +1,57 @@
 var express = require('express');
 var router = express.Router();
 var path = require("path");
-var firebase = require('firebase/app'); require('firebase/auth'); require('firebase/storage'); require('firebase/database');
+var firebase = require('firebase/app'); require('firebase/auth');require('firebase/database');require('firebase/storage');
 var multer  = require('multer');
 var storageRef = firebase.storage().ref();
 var dbRef = firebase.database().ref();
+
+var aws = require('aws-sdk');
+var multerS3 = require('multer-s3');
+var myBucket = 'jellyfishninjaapks';
+var myKey = 'AKIAJGFPY5ISORARL7IQ';
 // const googleStorage = require('@google-cloud/storage');
+var fs = require('fs');
+aws.config.loadFromPath('./s3_config.json');
+var pushkey ='';
+var url ='https://s3.ap-south-1.amazonaws.com/jellyfishninjaapks/';
 
-var storage = multer.diskStorage({
-    destination: function(req, file, cb){
-        cb(null, 'public/apks');
-    },
-    filename:function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now()+'.apk');
+var s3 = new aws.S3();
 
-    }
-});
 
-var upload = multer({storage: storage});
+
+var upload = multer({storage: multerS3({
+        s3: s3,
+        bucket: myBucket,
+        metadata: function (req, file, cb) {
+            cb(null, {fieldName: file.fieldname});
+        },
+        key: function (req, file, cb) {
+            var user = firebase.auth().currentUser;
+            pushkey = dbRef.child('Applications/'+user.uid).push().key;
+
+            cb(null, pushkey+'.jpeg')
+        }
+    })});
 
 
 
 
 router.post('/', isAuthenticated,upload.single('apkfile'),function(req, res, next) {
     var user = firebase.auth().currentUser;
-    var pushkey = dbRef.child('Applications/'+user.uid).push().key;
 
-    console.log("LGINCLD Login Called"+user.uid+" "+pushkey);
     var appInfo = req.body;
-    console.log('LGINCLD form data', appInfo);
-    var fs = require('fs');
-    const testFolder = '/public/apks/';
-    console.log('LGINCLD form XXXX apkfile',path.join(__dirname, './..', testFolder + req.file.filename));
-    //
-    var stream = fs.readFileSync(path.join(__dirname, './..', testFolder + req.file.filename));
+    var project = {
+        'appname':appInfo.appname,
+        'version':appInfo.version,
+        'package':appInfo.package,
+        'description':appInfo.description,
+        'apkfileurl':url+pushkey+'.jpeg'
 
 
-    console.log("blaaah aa " +storageRef.child('/APK/'+user.uid+'/filelist/'+pushkey+'.apk').put(stream));
-    //     .then(function(snapshot) {
-    //     console.log('Uploaded', snapshot.totalBytes, 'bytes.');
-    //     console.log('File metadata:', snapshot.metadata);
-    //     // Let's get a download URL for the file.
-    //     snapshot.ref.getDownloadURL().then(function(url) {
-    //         console.log('File available at', url);
-    //         // [START_EXCLUDE]
-    //         // [END_EXCLUDE]
-    //     });
-    // }).catch(function(error) {
-    //     // [START onfailure]
-    //     console.error('Upload failed:', error);
-    //     // [END onfailure]
-    // });
-    //
-    // dbRef.child('users/' + user.uid).set(req.body);
+    };
+
+    dbRef.child('Applications/'+user.uid+'/projects/'+pushkey+"/").set(project);
 
 
     // [END oncomplete]
