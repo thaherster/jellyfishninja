@@ -28,7 +28,7 @@ var upload = multer({storage: multerS3({
         },
         key: function (req, file, cb) {
             var user = firebase.auth().currentUser;
-            pushkey = dbRef.child('Applications/'+user.uid).push().key;
+            pushkey = dbRef.child('Applications/'+user.uid+'/projects/').push().key;
 
             cb(null, pushkey+'.jpeg')
         }
@@ -41,28 +41,32 @@ router.post('/', isAuthenticated,upload.single('apkfile'),function(req, res, nex
 
     var user = firebase.auth().currentUser;
 
-    var appInfo = req.body;
-    var project = {
-        'appname':appInfo.appname,
-        'version':appInfo.version,
-        'package':appInfo.package,
-        'description':appInfo.description,
-        'apkfileurl':url+pushkey+'.jpeg'
+    var dbRefx = firebase.database().ref().child('Applications/'+user.uid+'/projects');
+    dbRefx.once('value', function(snapshot) {
+       if(snapshot.numChildren()<=10)
+       {
+           var appInfo = req.body;
+           var project = {
+               'appname':appInfo.appname,
+               'version':appInfo.version,
+               'package':appInfo.package,
+               'description':appInfo.description,
+               'apkfileurl':url+pushkey+'.jpeg'
+           };
+           dbRefx.child("/"+pushkey+"/").set(project);
+           // [END oncomplete]
+           console.log('END');
+           // $(".spn_hol").hide();
+           res.sendStatus(200);
+       }
+       else {
+           res.send({'message':'Limit Exceeded'});
+       }
+
+    });
 
 
-    };
 
-    dbRef.child('Applications/'+user.uid+'/projects/'+pushkey+"/").set(project);
-
-
-    // [END oncomplete]
-
-
-
-    console.log('END');
-    // $(".spn_hol").hide();
-
-    res.sendStatus(200);
 
 
 });

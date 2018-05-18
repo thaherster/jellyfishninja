@@ -191,43 +191,7 @@
                                     <th>Package</th>
                                     <th>Reports</th>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>Dakota Rice</td>
-                                        <td>1.1</td>
-                                        <td>casd</td>
-                                        <td class="text-primary">$36,738</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Minerva Hooper</td>
-                                        <td>Curaçao</td>
-                                        <td>Sinaai-Waas</td>
-                                        <td class="text-primary">$23,789</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sage Rodriguez</td>
-                                        <td>Netherlands</td>
-                                        <td>Baileux</td>
-                                        <td class="text-primary">$56,142</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Philip Chaney</td>
-                                        <td>Korea, South</td>
-                                        <td>Overland Park</td>
-                                        <td class="text-primary">$38,735</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Doris Greene</td>
-                                        <td>Malawi</td>
-                                        <td>Feldkirchen in Kärnten</td>
-                                        <td class="text-primary">$63,542</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mason Porter</td>
-                                        <td>Chile</td>
-                                        <td>Gloucester</td>
-                                        <td class="text-primary">$78,615</td>
-                                    </tr>
+                                    <tbody id="applisttable">
                                     </tbody>
                                 </table>
                             </div>
@@ -354,7 +318,7 @@
 <script src="../dashassets/js/dropify.js"></script>
 
 <script>
-
+    var PLIST;
     var drEvent = $('.dropify').dropify({
         messages: {
             'default': 'Drag and Drop or click to upload the latest .apk file here',
@@ -365,9 +329,9 @@
     });
     $(".spn_hol").hide();
 
-    $("#uploadForm").on("submit", function(){
+    $("#uploadForm").on("submit", function() {
         //Code: Action (like ajax...)
-        var form = $('#uploadForm')[0];
+       var form = $('#uploadForm')[0];
         var data = new FormData(form);
         $(".spn_hol").show();
 
@@ -387,12 +351,27 @@
             success: function (data) {
                 $(".spn_hol").hide();
 
-                // $("#result").text(data);
+               if(data.hasOwnProperty("message"))
+               { $("#submitbut").prop("disabled", false);
+                   $('#uploadForm')[0].reset();
+                   var drEvent = $('#apkfile').dropify();
+                   drEvent = drEvent.data('dropify');
+                   drEvent.resetPreview();
+                   drEvent.clearElement();
+                   alert(data.message)
+               }else {// $("#result").text(data);
                 console.log("SUCCESS : ", data);
-                alert("SUCESS");
-                $("#btnSubmit").prop("disabled", false);
+                // alert("SUCESS");
+                $("#submitbut").prop("disabled", false);
                 $('#uploadForm')[0].reset();
-                $('#apkfile').reset();
+                var drEvent = $('#apkfile').dropify();
+                drEvent = drEvent.data('dropify');
+                drEvent.resetPreview();
+                drEvent.clearElement();
+                getapps();
+
+               }
+
             },
             error: function (e) {
                 $(".spn_hol").hide();
@@ -400,7 +379,7 @@
 
                 // $("#result").text(e.responseText);
                 console.log("ERROR : ", e);
-                $("#btnSubmit").prop("disabled", false);
+                $("#submitbut").prop("disabled", false);
 
             }
         });
@@ -408,11 +387,53 @@
 
     })
 
-    // $("#upload").hide();
+    // Get the list of Applications
+ var getapps = function getAllApps() {
+     $.ajax({
+         type: "GET",
+         url: "/getapps",
+         processData: false,
+         contentType: false,
+         cache: false,
+         timeout: 600000,
+         success: function (data) {
+             console.log("SUCCESS : ", data.projectList +" SIZE "+data.projectList.length);
+                PLIST =data.projectList;
+                 for (var i = 0; i < data.projectList.length; i++)
+                 {
+                 var appname = data.projectList[i].appname;
+                 var version  = data.projectList[i].version;
+                 var packages = data.projectList[i].package;
+                 var childKey = data.projectList[i].childKey;
+                 var apkfileurl = data.projectList[i].apkfileurl;
+                 $('#applisttable').append('<tr class="trclick"  data-id='+i+'>' +
+                     '<td>'+appname+'</td><td class="text-primary">'+version+'</td><td>'+packages+'</td><td class="text-primary">'+version+'</td></tr>');
+                 }
 
-    // drEvent.on('dropify.errors', function(event, element){
-    //     alert('Has Errors!');
-    // });
+
+
+
+             // return data;
+         },
+         error: function (e) {
+
+             console.log("ERROR : ", e);
+
+         }
+     });
+ }
+
+ getapps();
+
+
+
+    $(document).on('click','.trclick',function () {
+        var id = $(this).data('id');
+        alert(PLIST[id].appname);
+
+    });
+
+
 
 </script>
 
