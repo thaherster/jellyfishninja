@@ -53,6 +53,7 @@ var applicationsRouter = require('./routes/applications');
 var reportsRouter = require('./routes/reports');
 var upgradeRouter = require('./routes/upgrade');
 var uploadRouter = require('./routes/upload');
+var upload_updateRouter = require('./routes/upload_update');
 var getappsRouter = require('./routes/getapps');
 
 var app = express();
@@ -81,6 +82,7 @@ app.use('/applications', applicationsRouter);
 app.use('/reports',reportsRouter);
 app.use('/upgrade', upgradeRouter);
 app.use('/upload', uploadRouter);
+app.use('/upload_update', upload_updateRouter);
 app.use('/getapps', getappsRouter);
 
 // catch 404 and forward to error handler

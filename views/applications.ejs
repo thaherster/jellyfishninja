@@ -259,6 +259,60 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <!--<div class="modal-content">-->
+                        <!--<div class="modal-header">-->
+                            <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                            <!--<h4 class="modal-title">Modal with Dynamic Content</h4>-->
+                        <!--</div>-->
+                        <!--<div class="modal-body">-->
+
+                        <!--</div>-->
+                        <!--<div class="modal-footer">-->
+                            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Save</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="card modal-content">
+                        <div class="card-header modal-header" data-background-color="purple">
+                            <h4 class="title_update"></h4>
+                        </div>
+                        <div class="card-content modal-body">
+                            <form id="uploadForm_update"  method="post" enctype="multipart/form-data">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating is-focused">
+                                            <label class="control-label">Version</label>
+                                            <input id="version_update" name="version_update"  required="required"  type="number" class="form-control" min="0" >
+                                            <input id="childKey" name="childKey" type="hidden" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>APK</label>
+                                            <input type="file" id="apkfile_update" name="apkfile_update"
+                                                   class="dropify" data-default-file="" data-height="100"
+                                                   data-show-remove="false" data-show-loader="true"  required="required"
+                                                   data-allowed-file-extensions="apk jpeg png"  />
+                                        </div>
+                                    </div>
+                                </div>
+                                <button id="submitbut_update" type="submit" class="btn btn-primary pull-right">Update</button>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
         </div>
         <footer class="footer">
             <div class="container-fluid">
@@ -387,6 +441,67 @@
 
     })
 
+    $("#uploadForm_update").on("submit", function() {
+        //Code: Action (like ajax...)
+
+       var form = $('#uploadForm_update')[0];
+        var data = new FormData(form);
+        console.log("KEYSSSSS"," : "+data.toString());
+
+        $(".spn_hol").show();
+
+        // disabled the submit button
+        $("#submitbut_update").prop("disabled", true);
+
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "/upload_update",
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+                $(".spn_hol").hide();
+
+               if(data.hasOwnProperty("message"))
+               { $("#submitbut_update").prop("disabled", false);
+                   $('#uploadForm_update')[0].reset();
+                   var drEvent = $('#apkfile_update').dropify();
+                   drEvent = drEvent.data('dropify');
+                   drEvent.resetPreview();
+                   drEvent.clearElement();
+                   alert(data.message)
+               }else {// $("#result").text(data);
+                console.log("SUCCESS : ", data);
+                // alert("SUCESS");
+                $("#submitbut_update").prop("disabled", false);
+                $('#uploadForm_update')[0].reset();
+                var drEvent = $('#apkfile_update').dropify();
+                drEvent = drEvent.data('dropify');
+                drEvent.resetPreview();
+                drEvent.clearElement();
+                   $('#myModal').modal('toggle');
+                getapps();
+
+               }
+
+            },
+            error: function (e) {
+                $(".spn_hol").hide();
+                alert("ERROR");
+
+                // $("#result").text(e.responseText);
+                console.log("ERROR : ", e);
+                $("#submitbut_update").prop("disabled", false);
+
+            }
+        });
+        return false;
+
+    })
+
     // Get the list of Applications
  var getapps = function getAllApps() {
      $.ajax({
@@ -406,12 +521,17 @@
                  var packages = data.projectList[i].package;
                  var childKey = data.projectList[i].childKey;
                  var apkfileurl = data.projectList[i].apkfileurl;
+                     $("#applisttable tr").remove();
                  $('#applisttable').append('<tr class="trclick"  data-id='+i+'>' +
                      '<td>'+appname+'</td><td class="text-primary">'+version+'</td><td>'+packages+'</td><td class="text-primary">'+version+'</td></tr>');
                  }
 
-
-
+                 if( data.projectList.length<=0)
+                 {
+                     $("#applisttable tr").remove();
+                     $('#applisttable').append('<tr  >' +
+                         '<td>No Applications. Upload new apk in the below section.</td></tr>');
+                 }
 
              // return data;
          },
@@ -429,7 +549,13 @@
 
     $(document).on('click','.trclick',function () {
         var id = $(this).data('id');
-        alert(PLIST[id].appname);
+        // alert(PLIST[id].appname);
+
+            $('.title_update').text("Update Application - "+PLIST[id].appname);
+            $('#version_update').val(PLIST[id].version);
+            $('#childKey').val(PLIST[id].childKey);
+            $('#version_update').data('id',id);
+        $('#myModal').modal({show:true});
 
     });
 
