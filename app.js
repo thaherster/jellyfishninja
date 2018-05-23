@@ -48,6 +48,7 @@ var logoutRouter = require('./routes/logout');
 var forgotpassRouter = require('./routes/forgotpass');
 var registerRouter = require('./routes/register');
 var userRouter = require('./routes/user');
+var deviceRouter = require('./routes/device');
 var notificationsRouter = require('./routes/notifications');
 var applicationsRouter = require('./routes/applications');
 var reportsRouter = require('./routes/reports');
@@ -55,6 +56,7 @@ var upgradeRouter = require('./routes/upgrade');
 var uploadRouter = require('./routes/upload');
 var upload_updateRouter = require('./routes/upload_update');
 var getappsRouter = require('./routes/getapps');
+var qrcodeRouter = require('./routes/qrcode');
 
 var app = express();
 
@@ -77,6 +79,7 @@ app.use('/logout', logoutRouter);
 app.use('/forgotpass', forgotpassRouter);
 app.use('/register', registerRouter);
 app.use('/user', userRouter);
+app.use('/device', deviceRouter);
 app.use('/notifications', notificationsRouter);
 app.use('/applications', applicationsRouter);
 app.use('/reports',reportsRouter);
@@ -84,6 +87,7 @@ app.use('/upgrade', upgradeRouter);
 app.use('/upload', uploadRouter);
 app.use('/upload_update', upload_updateRouter);
 app.use('/getapps', getappsRouter);
+app.use('/qrcode', qrcodeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

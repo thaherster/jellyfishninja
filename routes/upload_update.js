@@ -30,7 +30,7 @@ var upload = multer({storage: multerS3({
             console.log("KEYSDSD 1"+JSON.stringify(req.body));
             pushkey = req.body.childKey;
 
-            cb(null, pushkey+'.jpeg')
+            cb(null, pushkey+'.apk')
         }
     })});
 

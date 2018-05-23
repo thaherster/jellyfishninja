@@ -30,7 +30,7 @@ var upload = multer({storage: multerS3({
             var user = firebase.auth().currentUser;
             pushkey = dbRef.child('Applications/'+user.uid+'/projects/').push().key;
 
-            cb(null, pushkey+'.jpeg')
+            cb(null, pushkey+'.apk')
         }
     })});
 
@@ -51,7 +51,7 @@ router.post('/', isAuthenticated,upload.single('apkfile'),function(req, res, nex
                'version':appInfo.version,
                'package':appInfo.package,
                'description':appInfo.description,
-               'apkfileurl':url+pushkey+'.jpeg'
+               'apkfileurl':url+pushkey+'.apk'
            };
            dbRefx.child("/"+pushkey+"/").set(project);
            // [END oncomplete]

@@ -15,6 +15,15 @@
         width: 100%;
         bottom: 10px;
     }
+
+}
+.qrcode{
+    text-align: center;
+}
+.qrcode img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
 }
 
 #map {
