@@ -191,7 +191,7 @@
                             </div>
                             <div class="card-content table-responsive">
                                 <table class="table">
-                                    <thead class="text-primary">
+                                    <thead id="applisttable_head" class="text-primary">
                                     <th>Name</th>
                                     <th>Version</th>
                                     <th>Package</th>
@@ -520,6 +520,8 @@
          success: function (data) {
              console.log("SUCCESS : ", data.projectList +" SIZE "+data.projectList.length);
                 PLIST =data.projectList;
+             $("#applisttable tr").remove();
+             $("#applisttable_head").show();
                  for (var i = 0; i < data.projectList.length; i++)
                  {
                  var appname = data.projectList[i].appname;
@@ -527,13 +529,15 @@
                  var packages = data.projectList[i].package;
                  var childKey = data.projectList[i].childKey;
                  var apkfileurl = data.projectList[i].apkfileurl;
-                     $("#applisttable tr").remove();
+
+
                  $('#applisttable').append('<tr class="trclick"  data-id='+i+'>' +
                      '<td>'+appname+'</td><td class="text-primary">'+version+'</td><td>'+packages+'</td><td class="text-primary">'+version+'</td></tr>');
                  }
 
                  if( data.projectList.length<=0)
                  {
+                     $("#applisttable_head").hide();
                      $("#applisttable tr").remove();
                      $('#applisttable').append('<tr  >' +
                          '<td>No Applications. Upload new apk in the below section.</td></tr>');
