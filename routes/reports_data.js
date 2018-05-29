@@ -9,17 +9,34 @@ router.get('/',isAuthenticated, function(req, res, next) {
     var user = firebase.auth().currentUser;
     var key =req.query.valueSelected;
     var dbRef = firebase.database().ref().child('Reports/'+user.uid+'/viaAndroid/').child(key);
-    var reportsList=[];
+    var bugsList=[];
+    var apiList=[];
+    var suggestionList=[];
 
     dbRef.once('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             var childKey = childSnapshot.key;
             var childData = childSnapshot.val();
             var reports = new Reports(childData.key, childData.status,childData.text,childData.title,childData.type);
-            reportsList.push(reports);
+            if(childData.type==="0")
+            {
+                bugsList.push(reports);
+            }
+            else if(childData.type==="1")
+            {
+                apiList.push(reports);
+
+            }
+            else if(childData.type==="2")
+            {
+                suggestionList.push(reports);
+
+            }
         });
-        console.log("LISTRSAAAAREPORTS "," reportsList : "+reportsList.toString());
-        res.send({"reportsList":reportsList});
+        console.log("LISTRSAAAAREPORTS "," bugsList : "+bugsList.toString());
+        res.send({"bugsList":bugsList,
+                    "apiList":apiList,
+                    "suggestionList":suggestionList});
 
     });
 
