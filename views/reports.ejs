@@ -91,6 +91,11 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#"> Reports </a>
+                    <select  class="navbar"  id="selectdropdown">
+                        <% projectList.forEach(function(pjct) { %>
+                        <option  class="optionclick" value="<%= pjct.childKey %>"><%= pjct.appname %></option>
+                        <% }); %>
+                    </select>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -442,5 +447,52 @@
 <script src="../dashassets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="../dashassets/js/demo.js"></script>
+<script>
 
+    var PLIST;
+    function fetchData(valueSelected) {
+       $.ajax({
+            type: "GET",
+            url: "/reports_data",
+           contentType: "application/json",
+            data:{ valueSelected: valueSelected },
+            cache: false,
+            timeout: 600000,
+           success: function (data) {
+               console.log("SUCCESS : ", data.reportsList +" SIZE "+data.reportsList.length);
+               PLIST =data.reportsList;
+               for (var i = 0; i < data.reportsList.length; i++)
+               {
+                   var key = data.reportsList[i].key;
+                   var status  = data.reportsList[i].status;
+                   var text = data.reportsList[i].text;
+                   var title = data.reportsList[i].title;
+                   var type = data.reportsList[i].type;
+
+               }
+               if( data.reportsList.length<=0)
+               {
+
+               }
+               // return data;
+           },
+            error: function (e) {
+
+                console.log("ERROR : ", e);
+
+            }
+        });
+
+    }
+
+    $('select').on('change', function (e) {
+        var optionSelected = $("option:selected", this);
+        var valueSelected = this.value;
+        fetchData(valueSelected);
+
+    });
+
+
+
+</script>
 </html>

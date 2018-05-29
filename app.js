@@ -57,6 +57,7 @@ var uploadRouter = require('./routes/upload');
 var upload_updateRouter = require('./routes/upload_update');
 var getappsRouter = require('./routes/getapps');
 var qrcodeRouter = require('./routes/qrcode');
+var reports_dataRouter = require('./routes/reports_data');
 
 var app = express();
 
@@ -88,6 +89,7 @@ app.use('/upload', uploadRouter);
 app.use('/upload_update', upload_updateRouter);
 app.use('/getapps', getappsRouter);
 app.use('/qrcode', qrcodeRouter);
+app.use('/reports_data', reports_dataRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
