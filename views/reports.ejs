@@ -65,12 +65,7 @@
                         <p>Devices</p>
                     </a>
                 </li>
-                <li>
-                    <a href="/notifications">
-                        <i class="material-icons text-gray">notifications</i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
+
                 <li class="active-pro">
                     <a href="upgrade">
                         <i class="material-icons">unarchive</i>
@@ -91,7 +86,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#"> Reports </a>
-                    <select  class="navbar"  id="selectdropdown">
+                    <select  class="navbar projectsselect"  id="selectdropdown">
                         <% projectList.forEach(function(pjct) { %>
                         <option  class="optionclick" value="<%= pjct.childKey %>"><%= pjct.appname %></option>
                         <% }); %>
@@ -185,13 +180,13 @@
                                             </li>
                                             <li class="">
                                                 <a href="#messages" data-toggle="tab">
-                                                    <i class="material-icons">code</i> Suggestions
+                                                    <i class="material-icons">code</i> API
                                                     <div class="ripple-container"></div>
                                                 </a>
                                             </li>
                                             <li class="">
                                                 <a href="#settings" data-toggle="tab">
-                                                    <i class="material-icons">cloud</i> API
+                                                    <i class="material-icons">timeline</i> Suggestions
                                                     <div class="ripple-container"></div>
                                                 </a>
                                             </li>
@@ -232,16 +227,22 @@
                 <div class="card modal-content">
                     <div class="card-header modal-header" data-background-color="purple">
                         <h4 class="title_report"></h4>
+                        <select class="navbar stateselect"   id="selectdropdownstate">
+                            <option  class="optionclick"  value="0">Open</option>
+                            <option  class="optionclick" value="1">Ready for Testing</option>
+                            <option  class="optionclick"  value="2">Closed</option>
+                        </select>
+
                     </div>
                     <div class="card-content modal-body">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group label-floating is-focused">
+                                <h4><span style='font-weight: bold;'>Description</span></h4>
                                 <p class="desc_report"></p>
+                                <h4 class="img_report_as"><span style='font-weight: bold;'>Screenshot</span></h4>
                                 <img class="img_report" src="">
                             </div>
-                            <button id="submitbut_report" type="submit" class="btn btn-primary pull-right">Save</button>
-                            <div class="clearfix"></div>
                             </div>
                         </div>
                     </div>
@@ -312,6 +313,8 @@
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="../dashassets/js/demo.js"></script>
 <script>
+    var current_item;
+    var current_project;
 
     window.onload = function () {
         var state = <%- JSON.stringify(projectList) %>
@@ -321,12 +324,102 @@
         { fetchData(state[0].childKey);}
     }
 
-
     var bugsList;
     var apiList;
     var suggestionList;
+
+    function poplayedata(data) {
+        console.log("SUCCESS : ", data.bugsList +" SIZE "+data.bugsList.length);
+        console.log("SUCCESS : ", data.apiList +" SIZE "+data.apiList.length);
+        console.log("SUCCESS : ", data.suggestionList +" SIZE "+data.suggestionList.length);
+        bugsList =data.bugsList;
+        apiList =data.apiList;
+        suggestionList =data.suggestionList;
+        $("#bugstable tr").remove();
+        $("#apitable tr").remove();
+        $("#suggesttable tr").remove();
+
+        for (var i = 0; i < data.bugsList.length; i++)
+        {
+            var key = data.bugsList[i].key;
+            var status  = data.bugsList[i].status;
+            var text = data.bugsList[i].text;
+            var title = data.bugsList[i].title;
+            var type = data.bugsList[i].type;
+
+
+            $('#bugstable').append(
+                '<tr  data-id='+i+'>'+
+                '<td>'+
+                '<div class="checkbox">'+
+                '<label>'+ (data.bugsList[i].status === "2" ?'<p>Closed</p>':'<input type="checkbox" onclick="javascript: return false;" name="optionsCheckboxes"'+(data.bugsList[i].status === "1" ?'checked': '')+'>' )+
+                '</label>'+
+                '</div>'+
+                '</td>'+
+                '<td>'+data.bugsList[i].title+'</td>'+
+                '<td class="td-actions text-right">'+
+                '<button data-id='+i+' type="button" rel="tooltip" title="Open" class="btn btn-primary btn-simple btn-xs switch-zero">'+
+                '<i class="material-icons">streetview</i>'+
+                '</button>'+
+                '</td>'+
+                '</tr>'
+            );
+
+        }
+        for (var i = 0; i < data.apiList.length; i++)
+        {
+            $('#apitable').append(
+                '<tr  data-id='+i+'>'+
+                '<td>'+
+                '<div class="checkbox">'+
+                '<label>'+ (data.apiList[i].status === "2" ?'<p>Closed</p>':'<input type="checkbox" onclick="javascript: return false;" name="optionsCheckboxes"'+(data.apiList[i].status === "1" ?'checked': '')+'>' )+
+                '</label>'+
+                '</div>'+
+                '</td>'+
+                '<td>'+data.apiList[i].title+'</td>'+
+                '<td class="td-actions text-right">'+
+                '<button  data-id='+i+'  type="button" rel="tooltip" title="Open" class="btn btn-primary btn-simple btn-xs switch-one">'+
+                '<i class="material-icons">streetview</i>'+
+                '</button>'+
+                '</td>'+
+                '</tr>'
+            );
+
+        }
+
+        for (var i = 0; i < data.suggestionList.length; i++)
+        {
+            $('#suggesttable').append(
+                '<tr  data-id='+i+'>'+
+                '<td>'+
+                '<div class="checkbox">'+
+                '<label>'+ (data.suggestionList[i].status === "2" ?'<p>Closed</p>':'<input type="checkbox" onclick="javascript: return false;" name="optionsCheckboxes"'+(data.suggestionList[i].status === "1" ?'checked': '')+'>' )+
+                '</label>'+
+                '</div>'+
+                '</td>'+
+                '<td>'+data.suggestionList[i].title+'</td>'+
+                '<td class="td-actions text-right">'+
+                '<button  data-id='+i+' type="button" rel="tooltip" title="Open" class="btn btn-primary btn-simple btn-xs switch-two">'+
+                '<i class="material-icons">streetview</i>'+
+                '</button>'+
+                '</td>'+
+                '</tr>'
+            );
+
+        }
+
+
+//               if( data.reportsList.length<=0)
+//               {
+//
+//               }
+        // return data;
+    }
+
     function fetchData(valueSelected) {
-       $.ajax({
+        current_project = valueSelected;
+
+        $.ajax({
             type: "GET",
             url: "/reports_data",
            contentType: "application/json",
@@ -334,94 +427,7 @@
             cache: false,
             timeout: 600000,
            success: function (data) {
-               console.log("SUCCESS : ", data.bugsList +" SIZE "+data.bugsList.length);
-               console.log("SUCCESS : ", data.apiList +" SIZE "+data.apiList.length);
-               console.log("SUCCESS : ", data.suggestionList +" SIZE "+data.suggestionList.length);
-               bugsList =data.bugsList;
-               apiList =data.apiList;
-               suggestionList =data.suggestionList;
-               $("#bugstable tr").remove();
-               $("#apitable tr").remove();
-               $("#suggesttable tr").remove();
-
-               for (var i = 0; i < data.bugsList.length; i++)
-               {
-                   var key = data.bugsList[i].key;
-                   var status  = data.bugsList[i].status;
-                   var text = data.bugsList[i].text;
-                   var title = data.bugsList[i].title;
-                   var type = data.bugsList[i].type;
-
-
-       $('#bugstable').append(
-           '<tr  data-id='+i+'>'+
-           '<td>'+
-           '<div class="checkbox">'+
-           '<label>'+
-           '<input type="checkbox" onclick="javascript: return false;" name="optionsCheckboxes" '+ (data.bugsList[i].status > 0 ?'checked>': '>')
-           +'</label>'+
-           '</div>'+
-           '</td>'+
-           '<td>'+data.bugsList[i].title+'</td>'+
-           '<td class="td-actions text-right">'+
-           '<button data-id='+i+' type="button" rel="tooltip" title="Open" class="btn btn-primary btn-simple btn-xs switch-zero">'+
-           '<i class="material-icons">streetview</i>'+
-           '</button>'+
-           '</td>'+
-           '</tr>'
-       );
-
-               }
-               for (var i = 0; i < data.apiList.length; i++)
-               {
-               $('#apitable').append(
-           '<tr  data-id='+i+'>'+
-           '<td>'+
-           '<div class="checkbox">'+
-           '<label>'+
-           '<input type="checkbox" onclick="javascript: return false;" name="optionsCheckboxes" '+ (data.apiList[i].status > 0 ?'checked>': '>')
-           +'</label>'+
-           '</div>'+
-           '</td>'+
-           '<td>'+data.apiList[i].title+'</td>'+
-           '<td class="td-actions text-right">'+
-           '<button  data-id='+i+'  type="button" rel="tooltip" title="Open" class="btn btn-primary btn-simple btn-xs switch-one">'+
-           '<i class="material-icons">streetview</i>'+
-           '</button>'+
-           '</td>'+
-           '</tr>'
-               );
-
-               }
-
-       for (var i = 0; i < data.suggestionList.length; i++)
-       {
-   $('#suggesttable').append(
-       '<tr  data-id='+i+'>'+
-       '<td>'+
-       '<div class="checkbox">'+
-       '<label>'+
-       '<input type="checkbox" onclick="javascript: return false;" name="optionsCheckboxes" '+ (data.suggestionList[i].status > 0 ?'checked>': '>')
-       +'</label>'+
-       '</div>'+
-       '</td>'+
-       '<td>'+data.suggestionList[i].title+'</td>'+
-       '<td class="td-actions text-right">'+
-       '<button  data-id='+i+' type="button" rel="tooltip" title="Open" class="btn btn-primary btn-simple btn-xs switch-two">'+
-       '<i class="material-icons">streetview</i>'+
-       '</button>'+
-       '</td>'+
-       '</tr>'
-   );
-
-       }
-
-
-//               if( data.reportsList.length<=0)
-//               {
-//
-//               }
-               // return data;
+              poplayedata(data);
            },
             error: function (e) {
 
@@ -432,7 +438,7 @@
 
     }
 
-    $('select').on('change', function (e) {
+    $('.projectsselect').on('change', function (e) {
         var optionSelected = $("option:selected", this);
         var valueSelected = this.value;
         fetchData(valueSelected);
@@ -440,19 +446,56 @@
     });
 
 
+    function changeReport(current_item, valueSelected,current_project) {
+        $.ajax({
+            type: "GET",
+            url: "/set_reports_data",
+            contentType: "application/json",
+            data:{ current_item: current_item,
+            status :valueSelected,
+            current_project:current_project},
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+                poplayedata(data);
+            },
+            error: function (e) {
+
+                console.log("ERROR : ", e);
+
+            }
+        });
+
+    }
+
+    $('.stateselect').on('change', function (e) {
+        var valueSelected = this.value;
+        changeReport(current_item,valueSelected,current_project );
+
+    });
+
+
     function popitUp(popitemitem) {
-        $('.title_report').text(popitemitem.title);
-        $('.desc_report').text(popitemitem.text);
-        if(!popitemitem.imgurl)
+        current_item = popitemitem;
+        $('.title_report').text(current_item.title);
+        $('.desc_report').text(current_item.text);
+        var idas =current_item.status;
+        console.log(" SELECT "+idas);
+        $('#selectdropdownstate').val(idas).change();
+        if(!current_item.imgurl)
         {
             $('.img_report').hide();
+            $('.img_report_as').hide();
 
         }
         else {
             $('.img_report').show();
-            $('.img_report').attr("src",popitemitem.imgurl);
+            $('.img_report_as').show();
+            $('.img_report').attr("src",current_item.imgurl);
 
         }
+
+
         $('#myModal').modal({show:true});
     }
 
