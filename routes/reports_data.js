@@ -17,7 +17,7 @@ router.get('/',isAuthenticated, function(req, res, next) {
         snapshot.forEach(function(childSnapshot) {
             var childKey = childSnapshot.key;
             var childData = childSnapshot.val();
-            var reports = new Reports(childData.key, childData.status,childData.text,childData.title,childData.type);
+            var reports = new Reports(childData.key, childData.status,childData.text,childData.title,childData.type,childData.imgurl);
             if(childData.type==="0")
             {
                 bugsList.push(reports);
@@ -41,7 +41,7 @@ router.get('/',isAuthenticated, function(req, res, next) {
     });
 
 });
-function Reports(key, status,text,title,type){
+function Reports(key, status,text,title,type,imgurl){
 
     // Add object properties like this
     this.key = key;
@@ -49,6 +49,7 @@ function Reports(key, status,text,title,type){
     this.text = text;
     this.title = title;
     this.type = type;
+    this.imgurl = imgurl;
 }
 
 function isAuthenticated(req, res, next) {

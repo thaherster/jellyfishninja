@@ -226,6 +226,35 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <div class="card modal-content">
+                    <div class="card-header modal-header" data-background-color="purple">
+                        <h4 class="title_report"></h4>
+                    </div>
+                    <div class="card-content modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group label-floating is-focused">
+                                <p class="desc_report"></p>
+                                <img class="img_report" src="">
+                            </div>
+                            <button id="submitbut_report" type="submit" class="btn btn-primary pull-right">Save</button>
+                            <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+
         <footer class="footer">
             <div class="container-fluid">
                 <nav class="pull-left">
@@ -329,17 +358,14 @@
            '<td>'+
            '<div class="checkbox">'+
            '<label>'+
-           '<input type="checkbox" name="optionsCheckboxes" checked>'+
-           '</label>'+
+           '<input type="checkbox" onclick="javascript: return false;" name="optionsCheckboxes" '+ (data.bugsList[i].status > 0 ?'checked>': '>')
+           +'</label>'+
            '</div>'+
            '</td>'+
            '<td>'+data.bugsList[i].title+'</td>'+
            '<td class="td-actions text-right">'+
-           '<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">'+
-           '<i class="material-icons">edit</i>'+
-           '</button>'+
-           '<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">'+
-           '<i class="material-icons">close</i>'+
+           '<button data-id='+i+' type="button" rel="tooltip" title="Open" class="btn btn-primary btn-simple btn-xs switch-zero">'+
+           '<i class="material-icons">streetview</i>'+
            '</button>'+
            '</td>'+
            '</tr>'
@@ -349,63 +375,48 @@
                for (var i = 0; i < data.apiList.length; i++)
                {
                $('#apitable').append(
-                   '<tr  data-id='+i+'>'+
-                   '<td>'+
-                   '<div class="checkbox">'+
-                   '<label>'+
-                   '<input type="checkbox" name="optionsCheckboxes" checked>'+
-                   '</label>'+
-                   '</div>'+
-                   '</td>'+
-                   '<td>'+data.apiList[i].title+'</td>'+
-                   '<td class="td-actions text-right">'+
-                   '<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">'+
-                   '<i class="material-icons">edit</i>'+
-                   '</button>'+
-                   '<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">'+
-                   '<i class="material-icons">close</i>'+
-                   '</button>'+
-                   '</td>'+
-                   '</tr>'
+           '<tr  data-id='+i+'>'+
+           '<td>'+
+           '<div class="checkbox">'+
+           '<label>'+
+           '<input type="checkbox" onclick="javascript: return false;" name="optionsCheckboxes" '+ (data.apiList[i].status > 0 ?'checked>': '>')
+           +'</label>'+
+           '</div>'+
+           '</td>'+
+           '<td>'+data.apiList[i].title+'</td>'+
+           '<td class="td-actions text-right">'+
+           '<button  data-id='+i+'  type="button" rel="tooltip" title="Open" class="btn btn-primary btn-simple btn-xs switch-one">'+
+           '<i class="material-icons">streetview</i>'+
+           '</button>'+
+           '</td>'+
+           '</tr>'
                );
 
                }
 
        for (var i = 0; i < data.suggestionList.length; i++)
        {
-           $('#suggesttable').append(
-               '<tr  data-id='+i+'>'+
-               '<td>'+
-               '<div class="checkbox">'+
-               '<label>'+
-               '<input type="checkbox" name="optionsCheckboxes" checked>'+
-               '</label>'+
-               '</div>'+
-               '</td>'+
-               '<td>'+data.suggestionList[i].title+'</td>'+
-               '<td class="td-actions text-right">'+
-               '<button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">'+
-               '<i class="material-icons">edit</i>'+
-               '</button>'+
-               '<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">'+
-               '<i class="material-icons">close</i>'+
-               '</button>'+
-               '</td>'+
-               '</tr>'
-           );
+   $('#suggesttable').append(
+       '<tr  data-id='+i+'>'+
+       '<td>'+
+       '<div class="checkbox">'+
+       '<label>'+
+       '<input type="checkbox" onclick="javascript: return false;" name="optionsCheckboxes" '+ (data.suggestionList[i].status > 0 ?'checked>': '>')
+       +'</label>'+
+       '</div>'+
+       '</td>'+
+       '<td>'+data.suggestionList[i].title+'</td>'+
+       '<td class="td-actions text-right">'+
+       '<button  data-id='+i+' type="button" rel="tooltip" title="Open" class="btn btn-primary btn-simple btn-xs switch-two">'+
+       '<i class="material-icons">streetview</i>'+
+       '</button>'+
+       '</td>'+
+       '</tr>'
+   );
 
        }
 
 
-//               for (var i = 0; i < data.reportsList.length; i++)
-//               {
-//                   var key = data.reportsList[i].key;
-//                   var status  = data.reportsList[i].status;
-//                   var text = data.reportsList[i].text;
-//                   var title = data.reportsList[i].title;
-//                   var type = data.reportsList[i].type;
-//
-//               }
 //               if( data.reportsList.length<=0)
 //               {
 //
@@ -425,6 +436,39 @@
         var optionSelected = $("option:selected", this);
         var valueSelected = this.value;
         fetchData(valueSelected);
+
+    });
+
+
+    function popitUp(popitemitem) {
+        $('.title_report').text(popitemitem.title);
+        $('.desc_report').text(popitemitem.text);
+        if(!popitemitem.imgurl)
+        {
+            $('.img_report').hide();
+
+        }
+        else {
+            $('.img_report').show();
+            $('.img_report').attr("src",popitemitem.imgurl);
+
+        }
+        $('#myModal').modal({show:true});
+    }
+
+    $(document).on('click','.switch-two',function () {
+        var id = $(this).data('id');
+        popitUp(suggestionList[id]);
+
+    });
+    $(document).on('click','.switch-one',function () {
+        var id = $(this).data('id');
+        popitUp(apiList[id]);
+
+    });
+    $(document).on('click','.switch-zero',function () {
+        var id = $(this).data('id');
+        popitUp(bugsList[id]);
 
     });
 
