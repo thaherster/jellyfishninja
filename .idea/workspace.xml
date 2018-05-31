@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c27ad04-aef5-4bc4-b44d-a888220dc210" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/routes/set_reports_data.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change beforePath="$PROJECT_DIR$/views/applications.ejs" afterPath="$PROJECT_DIR$/views/applications.ejs" />
-      <change beforePath="$PROJECT_DIR$/views/dashboard.ejs" afterPath="$PROJECT_DIR$/views/dashboard.ejs" />
-      <change beforePath="$PROJECT_DIR$/views/device.ejs" afterPath="$PROJECT_DIR$/views/device.ejs" />
-      <change beforePath="$PROJECT_DIR$/views/reports.ejs" afterPath="$PROJECT_DIR$/views/reports.ejs" />
-      <change beforePath="$PROJECT_DIR$/views/upgrade.ejs" afterPath="$PROJECT_DIR$/views/upgrade.ejs" />
-      <change beforePath="$PROJECT_DIR$/views/user.ejs" afterPath="$PROJECT_DIR$/views/user.ejs" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,8 +22,8 @@
       <file leaf-file-name="user.ejs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/user.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+            <state relative-caret-position="323">
+              <caret line="19" column="24" lean-forward="false" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -177,6 +169,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -194,7 +187,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -413,7 +405,8 @@
       <workItem from="1527674667802" duration="2234000" />
       <workItem from="1527681525334" duration="1748000" />
       <workItem from="1527683398946" duration="1792000" />
-      <workItem from="1527685221058" duration="1000" />
+      <workItem from="1527685221058" duration="247000" />
+      <workItem from="1527740434036" duration="37000" />
     </task>
     <task id="LOCAL-00001" summary="Application">
       <created>1526906965883</created>
@@ -433,7 +426,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="200973000" />
+    <option name="totallyTimeSpent" value="201256000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -453,7 +446,7 @@
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.50436854" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29864866" sideWeight="0.49563146" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29864866" sideWeight="0.49563146" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27912933" sideWeight="0.7120419" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27972972" sideWeight="0.49722" order="8" side_tool="false" content_ui="tabs" />
@@ -764,6 +757,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="61" column="16" lean-forward="false" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -825,8 +819,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/user.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+        <state relative-caret-position="323">
+          <caret line="19" column="24" lean-forward="false" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
           <folding />
         </state>
       </provider>
