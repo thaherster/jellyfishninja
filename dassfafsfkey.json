@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "jellyfishninja-899d1",
+  "private_key_id": "e4bc5a5d8ee43dcb24b5911fb8d899722a5b22d3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDppIFjyQzeP9qP\nG/wu3sY/bbeA8yYgWnweWRBN9TQtsEf7NqlGVIiewayyD8kjnQ3JDcYX8gCs5BRA\nrvl2ZWgRa76wkw8UG4CMY/0wjwRfDc/zw1vN92J7g3Xinf4DggNRJw5MqTpLomFo\nU+ZWvwOhBNtyn8w8pZcq05XOaLNDETs2e5O7VElD+9FN7imK64gE+S9e3uns5XR6\n+4Y5B+kz7jSWtJkkEKkaZ2Td89OGTcszU4O8bFo8mbUmSCefCtEiE7LbESwPJgHD\n6h3O36uwNDyks1ECJuLJWt6nOCBzsozQPUVyxyjw815b3UPNJcywFVUX/M7rI1Tq\nOzQzHq7xAgMBAAECggEAFDNRLZGzL18JdECY6euAa/j+OeOr6vWv0Abmyjq2T3Hz\nk0R7V7WU11cK6Z1ESHQ6fiTW+PiHNuuEVcBbGLG1UPZGFymrztL+5wR5HlLrL5W3\n4k1EeXcXWHL6BQUgcmiyBTjxe07RV7s7HURNwLfEpk4PdCZdR+wQORdwlxdF0nk3\nVwFnne2HcV6PxwvdLT/1G4giN5AWnCy9fqHHJXD6j5rGPxvKKX4kKBKBuI1ZZkjc\nXPXvET7Fs6jq1oCfXABxSXNW81ruunHDB6CxOlLLWC5k2j3mWH98km/YJLHCqNlZ\nVeM57Sk+pya+y/3VIb9y2yx5fb39JYcCuhzsiop7EQKBgQD/dsNwBaCX/0mmJEKI\n3B4apKKq8sZSu1roLkGamHL05qZPv+3NrD0KBlwgcBQn9tAdV7WZ5NS+yIttZG6q\nLpXUWg7eCPvJI+WrutfgH6ANvXXVTb01Y3IRhsZ3X1jDQWQ4pACIsX+8OIRhsL1N\nuC7cEnoLCdWBH1xrsbCd4BS+OQKBgQDqIgT8Gx+8BpW4plONBkOz/imkes+VYr+u\n4RtiHNfdj7a/zuE2drHao2F9sSHIG6wMrP068W5WgDFFq9lK/Y0Wz0l/bu4zUPlc\nGxaEWFU3dX6enGzZBKxjYuMUlrRNkhY1CIIv47WmMZ8jwsgr3WPLwTRihYrCzLUW\nX1rzDrb2eQKBgQCFI/R/sa8dCKPtvwAeK/pUkHFm/th1zcd3MoRmegWPtZYAAluB\n0b6ONvpUvZUDrxKP+GJhLm3icMqZ3LoAX/8eiUEuXyg6kEbm1Z4k5NaZ0qBS5w0x\ngf61O7S8CilMugvtqSvOEhQsmJgGAgLnOpLRh5+rmRh5D0svpZAS9/JXoQKBgEEp\ntrlz0yFBs+nwYNCfLbiqxGxCwgORuEez3ysvW+UOWo6Hxaai4l03m6qf4gcPrJLa\nkqAVEeCBTTVW3uNALkRq7MnK1gDySHSaFWpAK3eD+/mpD6JW6qO+ofTY/NWaExQv\nigxKFARtSx1o2M1ckKnk2++Pu078KmpPn8CGF+YBAoGBAPszDMgDPyFu5nZYN6uZ\nSPOFhvDTKCa1Xn+y40inEZiyIv1PO3fVdospz4ieZA7fxPjhhrXBsRQyXPH+D4DA\nUb7IDJnVZPe6iYk9TxQHsqvJxMR+xoXu4reW+oRjSAryxNMMHOuInwCZmxVYPVJr\neZWEOaPmVc8SCfC7j4e4+4Oi\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-ii0w6@jellyfishninja-899d1.iam.gserviceaccount.com",
+  "client_id": "117088219000853109317",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ii0w6%40jellyfishninja-899d1.iam.gserviceaccount.com"
+}

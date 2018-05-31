@@ -7,6 +7,7 @@ var logger = require('morgan');
 var validator = require('express-validator');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var FirestoreStore = require( 'firestore-store' )(session);
 var passport = require('passport');
 var flash = require('express-flash');
 var helmet = require('helmet');
@@ -20,7 +21,15 @@ var config = {
     messagingSenderId: "379489347774"
 };
 
+var admin = require("firebase-admin");
 
+var serviceAccount = require("./dassfafsfkey");
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://jellyfishninja-899d1.firebaseio.com"
+});
+var database = admin.firestore();
 
 firebase.initializeApp(config);
 global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
@@ -32,6 +41,9 @@ var middlewares = [
     cookieParser(),
     session({
         secret: 'ghkjfdgflkjdglkjdfghjfkhglkjfdglhkjfdujdfg',
+        store:  new FirestoreStore( {
+            database: database
+        }),
         resave: false,
         saveUninitialized: false
         // cookie: { maxAge: 60000 }
