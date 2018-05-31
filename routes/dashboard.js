@@ -4,6 +4,10 @@ var firebase = require('firebase/app'); require('firebase/auth');
 
 router.get('/', isAuthenticated,function(req, res, next) {
 
+    console.log("DASH "+req.user);
+    console.log("DASH "+req.isAuthenticated());
+
+
     var user = firebase.auth().currentUser;
            return res.render('dashboard',
                { title: 'Jellyfish Ninja',

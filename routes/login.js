@@ -4,11 +4,12 @@ var check = require('express-validator/check').check;
 var validationResult = require('express-validator/check').validationResult;
 var matchedData = require('express-validator/filter').matchedData;
 var firebase = require('firebase/app'); require('firebase/auth');
+var passport = require('passport');
 
 
 
 
-router.get('/',isAuthenticated, function(req, res, next) {
+router.get('/', function(req, res, next) {
         res.render('login', { title: 'Jellyfish Ninja',
             data:{},
             errors:{},
@@ -59,27 +60,25 @@ router.post('/', [
 
    firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            return res.redirect('/dashboard');
+            req.login(user.uid,function (err) {
+                res.redirect('/dashboard');
+
+            });
         }
     });
 
 });
 
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+
+    done(null, user);
+});
 
 
-function isAuthenticated(req, res, next) {
 
-    var user = firebase.auth().currentUser;
-
-    if (user) {
-        // User is signed in.
-        res.redirect('/dashboard');
-
-
-    } else {
-        // No user is signed in.
-        return next();
-    }
-}
 
 module.exports = router;

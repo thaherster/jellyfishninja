@@ -4,6 +4,7 @@ var check = require('express-validator/check').check;
 var validationResult = require('express-validator/check').validationResult;
 var matchedData = require('express-validator/filter').matchedData;
 var firebase = require('firebase/app'); require('firebase/auth');
+var passport = require('passport');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -59,11 +60,20 @@ router.post('/', [
 
             });
 
+            req.login(user.uid,function (err) {
+                res.redirect('/dashboard');
 
-            return res.redirect('/dashboard');
+            });
         }
     });
 });
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
 
+passport.deserializeUser(function(user, done) {
+
+        done(null, user);
+});
 
 module.exports = router;

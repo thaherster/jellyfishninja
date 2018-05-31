@@ -7,6 +7,7 @@ var logger = require('morgan');
 var validator = require('express-validator');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var passport = require('passport');
 var flash = require('express-flash');
 var helmet = require('helmet');
 var firebase = require("firebase");
@@ -30,11 +31,10 @@ var middlewares = [
     validator(),
     cookieParser(),
     session({
-        secret: 'super-secret-key',
-        key: 'super-secret-cookie',
+        secret: 'ghkjfdgflkjdglkjdfghjfkhglkjfdglhkjfdujdfg',
         resave: false,
-        saveUninitialized: false,
-        cookie: { maxAge: 60000 }
+        saveUninitialized: false
+        // cookie: { maxAge: 60000 }
     }),
     flash()
 ];
@@ -72,6 +72,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(middlewares);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
