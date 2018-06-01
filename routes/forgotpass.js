@@ -6,7 +6,7 @@ var matchedData = require('express-validator/filter').matchedData;
 var firebase = require('firebase/app'); require('firebase/auth');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/',authenticationMiddleware, function(req, res, next) {
     return res.render('forgotpass', { title: 'Jellyfish Ninja',
         data:{},
         errors:{},
@@ -51,6 +51,11 @@ router.post('/', [
 
 
 });
+
+function authenticationMiddleware (req, res, next) {
+    if (req.isAuthenticated()) return res.redirect('/dashboard');
+    next();
+}
 
 
 

@@ -7,7 +7,7 @@ var firebase = require('firebase/app'); require('firebase/auth');
 var passport = require('passport');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/',authenticationMiddleware, function(req, res, next) {
     res.render('register', { title: 'Jellyfish Ninja',
         data:{},
         errors:{},
@@ -75,5 +75,15 @@ passport.deserializeUser(function(user, done) {
 
         done(null, user);
 });
+
+
+
+function authenticationMiddleware (req, res, next) {
+    if (req.isAuthenticated()) return res.redirect('/dashboard');
+    next();
+}
+
+
+
 
 module.exports = router;

@@ -3,8 +3,8 @@ var router = express.Router();
 
 router.get('/', authenticationMiddleware,function(req, res, next) {
 
-    // console.log("DASH "+req.user);
-    // console.log("DASH "+req.isAuthenticated());
+    console.log("DASH "+req.user);
+    console.log("DASH "+req.isAuthenticated());
     // https://www.npmjs.com/package/passport
     //     https://github.com/hendrysadrak/firestore-store
     // https://www.npmjs.com/package/passport-firebase-auth

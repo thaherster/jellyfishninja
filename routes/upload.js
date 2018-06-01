@@ -27,8 +27,8 @@ var upload = multer({storage: multerS3({
             cb(null, {fieldName: file.fieldname});
         },
         key: function (req, file, cb) {
-            var user = firebase.auth().currentUser;
-            pushkey = dbRef.child('Applications/'+user.uid+'/projects/').push().key;
+            var user = req.user;
+            pushkey = dbRef.child('Applications/'+user+'/projects/').push().key;
 
             cb(null, pushkey+'.apk')
         }
@@ -37,11 +37,11 @@ var upload = multer({storage: multerS3({
 
 
 
-router.post('/', isAuthenticated,upload.single('apkfile'),function(req, res, next) {
+router.post('/',upload.single('apkfile'),function(req, res, next) {
 
-    var user = firebase.auth().currentUser;
+    var user = req.user;
 
-    var dbRefx = firebase.database().ref().child('Applications/'+user.uid+'/projects');
+    var dbRefx = firebase.database().ref().child('Applications/'+user+'/projects');
     dbRefx.once('value', function(snapshot) {
        if(snapshot.numChildren()<=10)
        {
@@ -71,19 +71,6 @@ router.post('/', isAuthenticated,upload.single('apkfile'),function(req, res, nex
 
 });
 
-function isAuthenticated(req, res, next) {
-
-    var user = firebase.auth().currentUser;
-
-    if (user) {
-        // User is signed in.
-        return next();
-
-    } else {
-        // No user is signed in.
-        res.redirect('/login');
-    }
-}
 
 
 

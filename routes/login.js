@@ -9,7 +9,7 @@ var passport = require('passport');
 
 
 
-router.get('/', function(req, res, next) {
+router.get('/',authenticationMiddleware, function(req, res, next) {
         res.render('login', { title: 'Jellyfish Ninja',
             data:{},
             errors:{},
@@ -77,6 +77,11 @@ passport.deserializeUser(function(user, done) {
 
     done(null, user);
 });
+
+function authenticationMiddleware (req, res, next) {
+    if (req.isAuthenticated()) return res.redirect('/dashboard');
+    next();
+}
 
 
 

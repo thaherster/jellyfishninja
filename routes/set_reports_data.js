@@ -5,8 +5,8 @@ var firebase = require('firebase/app'); require('firebase/auth'); require('fireb
 
 
 
-router.get('/',isAuthenticated, function(req, res, next) {
-    var user = firebase.auth().currentUser;
+router.get('/', function(req, res, next) {
+    var user = req.user;
     var current_item =req.query.current_item;
     var status =req.query.status;
     var current_project =req.query.current_project;
@@ -15,7 +15,7 @@ router.get('/',isAuthenticated, function(req, res, next) {
     console.log(" status "+ JSON.stringify(status));
     console.log(" current_project "+ JSON.stringify(current_project));
 
-    var dbRef = firebase.database().ref().child('Reports/'+user.uid+'/viaAndroid/').child(current_project);
+    var dbRef = firebase.database().ref().child('Reports/'+user+'/viaAndroid/').child(current_project);
     var bugsList=[];
     var apiList=[];
     var suggestionList=[];
@@ -58,20 +58,6 @@ function Reports(key, status,text,title,type,imgurl){
     this.imgurl = imgurl;
 }
 
-function isAuthenticated(req, res, next) {
 
-    var user = firebase.auth().currentUser;
-
-    if (user) {
-        // User is signed in.
-        return next();
-
-
-    } else {
-        // No user is signed in.
-        res.redirect('/');
-
-    }
-}
 
 module.exports = router;

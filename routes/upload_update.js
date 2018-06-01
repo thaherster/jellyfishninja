@@ -37,12 +37,12 @@ var upload = multer({storage: multerS3({
 
 
 
-router.post('/', isAuthenticated,upload.single('apkfile_update'),function(req, res, next) {
+router.post('/',upload.single('apkfile_update'),function(req, res, next) {
     console.log("KEYSDSD 2"+req.body.childKey);
 
-    var user = firebase.auth().currentUser;
+    var user =req.user;
     //
-    var dbRefx = firebase.database().ref().child('Applications/'+user.uid+'/projects/'+pushkey);
+    var dbRefx = firebase.database().ref().child('Applications/'+user+'/projects/'+pushkey);
     dbRefx.once('value', function(snapshot) {
 
             var appInfo = req.body;
@@ -57,22 +57,6 @@ router.post('/', isAuthenticated,upload.single('apkfile_update'),function(req, r
     });
 
 });
-
-function isAuthenticated(req, res, next) {
-    console.log("KEYSDSD AUTH "+req.body.childKey);
-    console.log("KEYSDSD AUTH "+req.body);
-
-    var user = firebase.auth().currentUser;
-
-    if (user) {
-        // User is signed in.
-        return next();
-
-    } else {
-        // No user is signed in.
-        res.redirect('/login');
-    }
-}
 
 
 

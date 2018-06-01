@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
-var firebase = require('firebase/app'); require('firebase/auth'); require('firebase/database');
+var firebase = require('firebase/app');  require('firebase/database');
 
 
 
 
-router.get('/',isAuthenticated, function(req, res, next) {
-    var user = firebase.auth().currentUser;
-    console.log("LISTRS "," childKey"+user.uid);
-    var dbRef = firebase.database().ref().child('Applications/'+user.uid+'/projects/');
+router.get('/', function(req, res, next) {
+
+    console.log("LISTRS "," childKey"+req.user);
+    var dbRef = firebase.database().ref().child('Applications/'+req.user+'/projects/');
     var projectList=[];
     dbRef.once('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
@@ -34,20 +34,5 @@ function Project(appname, version,packages,description,apkfileurl,childKey){
     this.childKey = childKey;
 }
 
-function isAuthenticated(req, res, next) {
-
-    var user = firebase.auth().currentUser;
-
-    if (user) {
-        // User is signed in.
-        return next();
-
-
-    } else {
-        // No user is signed in.
-        res.redirect('/');
-
-    }
-}
 
 module.exports = router;

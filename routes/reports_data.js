@@ -5,10 +5,10 @@ var firebase = require('firebase/app'); require('firebase/auth'); require('fireb
 
 
 
-router.get('/',isAuthenticated, function(req, res, next) {
-    var user = firebase.auth().currentUser;
+router.get('/', function(req, res, next) {
+    var user = req.user;
     var key =req.query.valueSelected;
-    var dbRef = firebase.database().ref().child('Reports/'+user.uid+'/viaAndroid/').child(key);
+    var dbRef = firebase.database().ref().child('Reports/'+user+'/viaAndroid/').child(key);
     var bugsList=[];
     var apiList=[];
     var suggestionList=[];
@@ -52,20 +52,6 @@ function Reports(key, status,text,title,type,imgurl){
     this.imgurl = imgurl;
 }
 
-function isAuthenticated(req, res, next) {
 
-    var user = firebase.auth().currentUser;
-
-    if (user) {
-        // User is signed in.
-        return next();
-
-
-    } else {
-        // No user is signed in.
-        res.redirect('/');
-
-    }
-}
 
 module.exports = router;
