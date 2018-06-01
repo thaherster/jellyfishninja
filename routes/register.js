@@ -60,7 +60,7 @@ router.post('/', [
 
             });
 
-            req.login(user.uid,function (err) {
+            req.logIn(user.uid,function (err) {
                 res.redirect('/dashboard');
 
             });

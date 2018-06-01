@@ -44,8 +44,8 @@ var middlewares = [
         store:  new FirestoreStore( {
             database: database
         }),
-        resave: false,
-        saveUninitialized: false
+        resave: true,
+        saveUninitialized: true
         // cookie: { maxAge: 60000 }
     }),
     flash()

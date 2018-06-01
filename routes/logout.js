@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 router.get('/', function(req, res, next) {
-   req.logout();
-   req.session.destroy();
-    res.redirect('/');
+    req.logOut();
+    req.session.destroy(function (err) {
+        res.redirect('/'); //Inside a callback… bulletproof!
+    });
 });
 
 
