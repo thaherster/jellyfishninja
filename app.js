@@ -71,6 +71,12 @@ var getappsRouter = require('./routes/getapps');
 var qrcodeRouter = require('./routes/qrcode');
 var reports_dataRouter = require('./routes/reports_data');
 var set_reports_dataRouter = require('./routes/set_reports_data');
+var productRouter = require('./routes/product');
+var pricingRouter = require('./routes/pricing');
+var blogRouter = require('./routes/blog');
+var aboutusRouter = require('./routes/aboutus');
+var licensesRouter = require('./routes/licenses');
+var termsandconditionsRouter = require('./routes/termsandconditions');
 
 var app = express();
 
@@ -107,6 +113,12 @@ app.use('/getapps', getappsRouter);
 app.use('/qrcode', qrcodeRouter);
 app.use('/reports_data', reports_dataRouter);
 app.use('/set_reports_data', set_reports_dataRouter);
+app.use('/product', productRouter);
+app.use('/pricing', pricingRouter);
+app.use('/blog', blogRouter);
+app.use('/aboutus', aboutusRouter);
+app.use('/licenses', licensesRouter);
+app.use('/termsandconditions', termsandconditionsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
