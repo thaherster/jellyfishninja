@@ -3,7 +3,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/',function(req, res, next) {
 
-    return res.render('product', { title: 'Jellyfish Ninja' });
+    return res.render('company', { title: 'Jellyfish Ninja' });
 
 });
 
