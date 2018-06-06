@@ -60,7 +60,7 @@ router.post('/', [
 
    firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            req.logIn(user.uid,function (err) {
+            req.logIn(user,function (err) {
                 res.redirect('/dashboard');
 
             });

@@ -7,8 +7,8 @@ var firebase = require('firebase/app');  require('firebase/database');
 
 router.get('/', function(req, res, next) {
 
-    console.log("LISTRS "," childKey"+req.user);
-    var dbRef = firebase.database().ref().child('Applications/'+req.user+'/projects/');
+    console.log("LISTRS "," childKey"+req.user.uid);
+    var dbRef = firebase.database().ref().child('Applications/'+req.user.uid+'/projects/');
     var projectList=[];
     dbRef.once('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot) {

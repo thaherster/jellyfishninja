@@ -40,7 +40,7 @@ var upload = multer({storage: multerS3({
 router.post('/',upload.single('apkfile_update'),function(req, res, next) {
     console.log("KEYSDSD 2"+req.body.childKey);
 
-    var user =req.user;
+    var user =req.user.uid;
     //
     var dbRefx = firebase.database().ref().child('Applications/'+user+'/projects/'+pushkey);
     dbRefx.once('value', function(snapshot) {

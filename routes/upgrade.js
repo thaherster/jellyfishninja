@@ -6,7 +6,8 @@ router.get('/', authenticationMiddleware,function(req, res, next) {
 
            return res.render('upgrade',
                { title: 'Jellyfish Ninja',
-                   user:req.user
+                   user:req.user.uid,
+                   useremail:req.user.email
                });
 });
 

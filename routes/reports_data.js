@@ -6,7 +6,7 @@ var firebase = require('firebase/app'); require('firebase/auth'); require('fireb
 
 
 router.get('/', function(req, res, next) {
-    var user = req.user;
+    var user = req.user.uid;
     var key =req.query.valueSelected;
     var dbRef = firebase.database().ref().child('Reports/'+user+'/viaAndroid/').child(key);
     var bugsList=[];

@@ -3,11 +3,12 @@ var router = express.Router();
 var firebase = require('firebase/app');
 
 router.get('/', authenticationMiddleware,function(req, res, next) {
-    console.log("DASH "+req.user);
+    console.log("DASH "+req.user.uid);
 
            return res.render('device',
                { title: 'Jellyfish Ninja',
-                   user:req.user
+                   user:req.user.uid,
+                   useremail:req.user.email
                });
 });
 

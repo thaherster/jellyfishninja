@@ -27,7 +27,7 @@ var upload = multer({storage: multerS3({
             cb(null, {fieldName: file.fieldname});
         },
         key: function (req, file, cb) {
-            var user = req.user;
+            var user = req.user.uid;
             pushkey = dbRef.child('Applications/'+user+'/projects/').push().key;
 
             cb(null, pushkey+'.apk')
@@ -39,7 +39,7 @@ var upload = multer({storage: multerS3({
 
 router.post('/',upload.single('apkfile'),function(req, res, next) {
 
-    var user = req.user;
+    var user = req.user.uid;
 
     var dbRefx = firebase.database().ref().child('Applications/'+user+'/projects');
     dbRefx.once('value', function(snapshot) {

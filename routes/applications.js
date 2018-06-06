@@ -6,7 +6,8 @@ router.get('/', authenticationMiddleware,function(req, res, next) {
     console.log("DASH "+req.user);
            return res.render('applications',
                { title: 'Jellyfish Ninja',
-                   user:req.user
+                   user:req.user.uid,
+                   useremail:req.user.email
                });
 });
 

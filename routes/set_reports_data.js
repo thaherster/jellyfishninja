@@ -6,7 +6,7 @@ var firebase = require('firebase/app'); require('firebase/auth'); require('fireb
 
 
 router.get('/', function(req, res, next) {
-    var user = req.user;
+    var user = req.user.uid;
     var current_item =req.query.current_item;
     var status =req.query.status;
     var current_project =req.query.current_project;
