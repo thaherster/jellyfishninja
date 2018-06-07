@@ -67,7 +67,7 @@
                 </li>
 
                 <li class="active-pro">
-                    <a href="upgrade">
+                    <a href="/upgrade">
                         <i class="material-icons">unarchive</i>
                         <p>Upgrade</p>
                     </a>
@@ -167,7 +167,7 @@
                     <div class="col-md-8 col-md-offset-2">
                         <div class="card">
                             <div class="card-header text-center" data-background-color="purple">
-                                <h4 class="title">Upgrade to PRO</h3>
+                                <h4 class="title">Upgrade to PRO</h4>
                                     <p class="category">Are you looking for more features? Check out Premium Version.</p>
                             </div>
                             <div class="card-content">
@@ -232,10 +232,10 @@
                                         <tr>
                                             <td class="text-center"></td>
                                             <td class="text-center">
-                                                <a href="#" class="btn btn-round btn-fill btn-default disabled">Current Version</a>
+                                                <a class="btn btn-round btn-fill btn-default disabled">Current Version</a>
                                             </td>
                                             <td class="text-center">
-                                                <a target="_blank" href="#" class="btn btn-round btn-fill btn-info">Upgrade to PRO</a>
+                                                <a class="btn btn-round btn-fill btn-info upgradesa">Upgrade to PRO</a>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -244,6 +244,57 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="card modal-content">
+                        <div class="card-header modal-header" data-background-color="purple">
+                               <h4 class="title_update"><i class="material-icons">lock</i> Secure Payment Info </h4>
+                        </div>
+                        <div class="card-content modal-body">
+                            <form id="payment_next" >
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating is-focused">
+                                            <label class="control-label">Name</label>
+                                            <input id="name" name="name"  required="required"  type="text" class="form-control" minlength="5" autocomplete='name' >
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating is-focused">
+                                            <label class="control-label">Email</label>
+                                            <input id="email" name="email"  required="required"  type="email" class="form-control" minlength="5" autocomplete="email" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group label-floating is-focused">
+                                            <label class="control-label">Contact Number (Include Country Code)</label>
+                                            <input id="contact" name="contact"  required="required"  type="number" class="form-control" minlength="7" autocomplete="contact" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group label-floating is-focused">
+                                            <label class="control-label">Price</label>
+                                            <input  name="price"  required="required"  type="text" class="form-control" min="7" value="$49(USD)" disabled autocomplete='on'>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button id="submitbut_update" type="submit" class="btn btn-primary pull-right" >Next</button>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -282,5 +333,43 @@
 <script src="dashassets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="dashassets/js/demo.js"></script>
+<script>
+    $(document).on('click','.upgradesa',function () {
+        var id = $(this).data('id');
+
+        $('#myModal').modal({show:true});
+
+    });
+
+
+    $(document).ready(function(){
+        $("#payment_next").on('submit', function(){
+            var name = $("#name").val();
+            var email = $("#email").val();
+            var contact = $("#contact").val();
+            $("#submitbut_update").prop("disabled", true);
+
+            var dataString = 'name='+ name + '&email='+ email + '&contact='+ contact;
+
+
+                // AJAX Code To Submit Form.
+                $.ajax({
+                    type: "POST",
+                    url: "/upgrade",
+                    data: dataString,
+                    cache: false,
+                    success: function(result){
+
+                        $("#submitbut_update").prop("disabled", false);
+                        $('#payment_next')[0].reset();
+                        $('#myModal').modal('toggle');
+
+                    }
+                });
+
+            return false;
+        });
+    });
+</script>
 
 </html>

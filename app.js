@@ -76,6 +76,7 @@ var pricingRouter = require('./routes/pricing');
 var blogRouter = require('./routes/blog');
 var companyRouter = require('./routes/company');
 var termsandconditionsRouter = require('./routes/termsandconditions');
+var paymentRouter = require('./routes/payment');
 
 var app = express();
 
@@ -117,6 +118,7 @@ app.use('/pricing', pricingRouter);
 app.use('/blog', blogRouter);
 app.use('/company', companyRouter);
 app.use('/termsandconditions', termsandconditionsRouter);
+app.use('/payment', paymentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
