@@ -361,7 +361,7 @@
 
         // disabled the submit button
         $("#submitbut").prop("disabled", true);
-
+        demo.showNotification('top','right','Please wait while the APK is been uploaded.');
         $.ajax({
             type: "POST",
             enctype: 'multipart/form-data',
@@ -381,7 +381,8 @@
                    drEvent = drEvent.data('dropify');
                    drEvent.resetPreview();
                    drEvent.clearElement();
-                   alert(data.message)
+                   demo.showNotification('top','right',data.message);
+
                }else {// $("#result").text(data);
                 console.log("SUCCESS : ", data);
                 // alert("SUCESS");
@@ -392,13 +393,15 @@
                 drEvent.resetPreview();
                 drEvent.clearElement();
                 getapps();
+                   demo.showNotification('top','right','Application Added!');
 
                }
 
             },
             error: function (e) {
                 $(".spn_hol").hide();
-                alert("ERROR");
+                demo.showNotification('top','right',e.message);
+
 
                 // $("#result").text(e.responseText);
                 console.log("ERROR : ", e);
@@ -421,6 +424,7 @@
 
         // disabled the submit button
         $("#submitbut_update").prop("disabled", true);
+        demo.showNotification('top','right','Please wait while the APK is been uploaded.');
 
         $.ajax({
             type: "POST",
@@ -441,7 +445,8 @@
                    drEvent = drEvent.data('dropify');
                    drEvent.resetPreview();
                    drEvent.clearElement();
-                   alert(data.message)
+                   demo.showNotification('top','right',data.message);
+
                }else {// $("#result").text(data);
                 console.log("SUCCESS : ", data);
                 // alert("SUCESS");
@@ -453,6 +458,7 @@
                 drEvent.clearElement();
                    $('#myModal').modal('toggle');
                 getapps();
+                   demo.showNotification('top','right','Application Updated!');
 
                }
 
@@ -464,6 +470,7 @@
                 // $("#result").text(e.responseText);
                 console.log("ERROR : ", e);
                 $("#submitbut_update").prop("disabled", false);
+                demo.showNotification('top','right',e.message);
 
             }
         });
@@ -511,7 +518,7 @@
          error: function (e) {
 
              console.log("ERROR : ", e);
-
+             demo.showNotification('top','right',e.message);
          }
      });
  }

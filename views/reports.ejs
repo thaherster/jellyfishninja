@@ -414,7 +414,7 @@
               poplayedata(data);
            },
             error: function (e) {
-
+                demo.showNotification('top','right',e.message);
                 console.log("ERROR : ", e);
 
             }
@@ -442,9 +442,10 @@
             timeout: 600000,
             success: function (data) {
                 poplayedata(data);
+                demo.showNotification('top','right','Status Changed!');
             },
             error: function (e) {
-
+                demo.showNotification('top','right',e.message);
                 console.log("ERROR : ", e);
 
             }
