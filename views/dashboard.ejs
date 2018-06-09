@@ -170,8 +170,7 @@
                             </div>
                             <div class="card-content">
                                 <p class="category">Applications</p>
-                                <h3 class="title">0/50
-                                    <small>Apps</small>
+                                <h3 class="title" id="appc">0/50
                                 </h3>
                             </div>
                             <div class="card-footer">
@@ -189,7 +188,7 @@
                             </div>
                             <div class="card-content">
                                 <p class="category">Reports</p>
-                                <h3 class="title">0</h3>
+                                <h3 class="title" id="repc">0</h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -205,7 +204,7 @@
                             </div>
                             <div class="card-content">
                                 <p class="category">Open Bugs</p>
-                                <h3 class="title">0</h3>
+                                <h3 class="title" id="bugc">0</h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -222,7 +221,7 @@
                             </div>
                             <div class="card-content">
                                 <p class="category">Connected Devices</p>
-                                <h3 class="title">0</h3>
+                                <h3 class="title" id="devc">0</h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -336,18 +335,48 @@
 <!--  Notifications Plugin    -->
 <script src="dashassets/js/bootstrap-notify.js"></script>
 <!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Material Dashboard javascript methods -->
 <script src="dashassets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="dashassets/js/demo.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-
         // Javascript method's body can be found in assets/js/demos.js
         demo.initDashboardPageCharts();
 
     });
+
+    // Get the list of Applications
+    var getdatss = function getAllDats() {
+        $.ajax({
+            type: "GET",
+            url: "/getdashdata",
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+                console.log("SUCCESS : ", data.deviceCount);
+                console.log("SUCCESS : ", data.appCount);
+                console.log("SUCCESS : ", data.reportCount);
+                console.log("SUCCESS : ", data.openbugCount);
+                appc.innerText=""+data.appCount+"/50";
+                repc.innerText=""+data.reportCount+"";
+                bugc.innerText=""+data.openbugCount+"";
+                devc.innerText=""+data.deviceCount+"";
+
+
+                // return data;
+            },
+            error: function (e) {
+
+                console.log("ERROR : ", e);
+                demo.showNotification('top','right',e.message);
+            }
+        });
+    }
+
+    getdatss();
 </script>
 
 </html>

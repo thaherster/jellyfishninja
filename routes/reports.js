@@ -6,6 +6,7 @@ router.get('/',authenticationMiddleware,function(req, res, next) {
 
     console.log("DASH "+req.user.uid);
     var dbRef = firebase.database().ref().child('Applications/'+req.user.uid+'/projects/');
+
     var projectList=[];
     dbRef.once('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot) {

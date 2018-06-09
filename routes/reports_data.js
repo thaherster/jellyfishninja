@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
     var bugsList=[];
     var apiList=[];
     var suggestionList=[];
+    console.log("LISTRSAAAAREPORTS "," enter ");
 
     dbRef.once('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
