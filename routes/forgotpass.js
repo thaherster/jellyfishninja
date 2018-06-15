@@ -1,13 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var check = require('express-validator/check').check;
-var validationResult = require('express-validator/check').validationResult;
-var matchedData = require('express-validator/filter').matchedData;
+import {check,validationResult} from 'express-validator/check'
+import {matchedData} from 'express-validator/filter'
 var firebase = require('firebase/app'); require('firebase/auth');
+import {authenticationMiddleware} from '../auth/authMiddlewares'
 
-/* GET users listing. */
 router.get('/',authenticationMiddleware, function(req, res, next) {
-    return res.render('forgotpass', { title: 'Jellyfish Ninja',
+    res.render('forgotpass', {
         data:{},
         errors:{},
         errorMessage:" "
@@ -24,39 +23,29 @@ router.post('/', [
 ],function(req, res, next) {
     var errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.render('forgotpass', {
+        res.render('forgotpass', {
             title: 'Jellyfish Ninja',
             data: req.body,
             errors: errors.mapped(),
             errorMessage:" "
         });
-    }
-
-    const data = matchedData(req);
-    console.log('Sanitized:', data);
-
-    firebase.auth().sendPasswordResetEmail(data.email).then(function() {
-        // Email sent.
-        return res.redirect('/login');
-    }).catch(function(error) {
-        // An error happened.
-        return res.render('forgotpass', {
-            title: 'Jellyfish Ninja',
-            data: req.body,
-            errors:{},
-            errorMessage:error.toString()
+    } else {
+        const data = matchedData(req);
+        console.log('Sanitized:', data);
+        firebase.auth().sendPasswordResetEmail(data.email)
+            .then(function () {
+                res.redirect('/login');
+            })
+            .catch(function (error) {
+            // An error happened.
+            return res.render('forgotpass', {
+                title: 'Jellyfish Ninja',
+                data: req.body,
+                errors: {},
+                errorMessage: error.toString()
+            });
         });
-    });
-
-
-
+    }
 });
-
-function authenticationMiddleware (req, res, next) {
-    if (req.isAuthenticated()) return res.redirect('/dashboard');
-    next();
-}
-
-
 
 module.exports = router;

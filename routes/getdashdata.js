@@ -3,7 +3,7 @@ var router = express.Router();
 var firebase = require('firebase/app');  require('firebase/database');
 
 
-
+//TODO: need refactoring
 
 router.get('/', function(req, res, next) {
 

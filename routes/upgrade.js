@@ -1,14 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var firebase = require('firebase/app'); require('firebase/auth');
+import {authenticationMiddleware} from '../auth/authMiddlewares'
 
 router.get('/', authenticationMiddleware,function(req, res, next) {
 
-           return res.render('upgrade',
-               { title: 'Jellyfish Ninja',
-                   user:req.user.uid,
-                   useremail:req.user.email
-               });
+           return res.render('upgrade');
 });
 
 router.post('/',function(req, res, next) {

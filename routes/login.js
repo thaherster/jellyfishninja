@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var check = require('express-validator/check').check;
-var validationResult = require('express-validator/check').validationResult;
-var matchedData = require('express-validator/filter').matchedData;
+import {check,validationResult} from 'express-validator/check'
+import {matchedData} from 'express-validator/filter'
 var firebase = require('firebase/app'); require('firebase/auth');
 var passport = require('passport');
+import {authenticationMiddleware} from '../auth/authMiddlewares'
 
 
 
@@ -62,7 +62,6 @@ router.post('/', [
         if (user) {
             req.logIn(user,function (err) {
                 res.redirect('/dashboard');
-
             });
         }
     });
@@ -77,11 +76,6 @@ passport.deserializeUser(function(user, done) {
 
     done(null, user);
 });
-
-function authenticationMiddleware (req, res, next) {
-    if (req.isAuthenticated()) return res.redirect('/dashboard');
-    next();
-}
 
 
 

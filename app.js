@@ -12,13 +12,14 @@ var passport = require('passport');
 var flash = require('express-flash');
 var helmet = require('helmet');
 var firebase = require("firebase");
+require('dotenv').config();
 var config = {
-    apiKey: "AIzaSyBLWcdEobIcG_nqnqpcFvDPOrBWByN2oXQ",
-    authDomain: "jellyfishninja-899d1.firebaseapp.com",
-    databaseURL: "https://jellyfishninja-899d1.firebaseio.com",
-    projectId: "jellyfishninja-899d1",
-    storageBucket: "jellyfishninja-899d1.appspot.com",
-    messagingSenderId: "379489347774"
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_DOMAIN,
+    databaseURL: process.env.FIREBASE_DATABASE_URL,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSENGER_ID
 };
 
 var admin = require("firebase-admin");
@@ -27,7 +28,7 @@ var serviceAccount = require("./dassfafsfkey");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://jellyfishninja-899d1.firebaseio.com"
+    databaseURL: process.env.FIREBASE_DATABASE_URL
 });
 var database = admin.firestore();
 
@@ -40,7 +41,7 @@ var middlewares = [
     validator(),
     cookieParser(),
     session({
-        secret: 'ghkjfdgflkjdglkjdfghjfkhglkjfdglhkjfdujdfg',
+        secret: process.env.SECRET_KEY,
         store:  new FirestoreStore( {
             database: database
         }),
@@ -95,6 +96,9 @@ app.use(middlewares);
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('*', (req,res,next) => {
+    res.locals.title = 'Jellyfish Ninja'
+})
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
