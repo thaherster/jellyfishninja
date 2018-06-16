@@ -1,6 +1,3 @@
-/**
- * Created by payyan1 on 15/06/18.
- */
 const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
 module.exports.authenticationMiddleware = function (req,res,next) {
     ensureLoggedIn(req,res,function () {

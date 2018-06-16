@@ -1,20 +1,25 @@
 var express = require('express');
 var router = express.Router();
-import {check,validationResult} from 'express-validator/check'
-import {matchedData} from 'express-validator/filter'
+var check = require('express-validator/check').check,
+    validationResult = require('express-validator/check').validationResult;
+var matchedData = require('express-validator/filter').matchedData;
 var firebase = require('firebase/app'); require('firebase/auth');
 var passport = require('passport');
-import {authenticationMiddleware} from '../auth/authMiddlewares'
+var authenticationMiddleware = require('../auth/authMiddlewares').authenticationMiddleware;
 
 
 
-
-router.get('/',authenticationMiddleware, function(req, res, next) {
-        res.render('login', { title: 'Jellyfish Ninja',
-            data:{},
-            errors:{},
-            errorMessage:" "
+router.get('/', authenticationMiddleware, function(req, res, next) {
+    if(req.loggedIn){
+        res.redirect('/dashboard')
+    } else {
+        res.render('login', {
+            title: 'Jellyfish Ninja',
+            data: {},
+            errors: {},
+            errorMessage: " "
         });
+    }
 });
 
 

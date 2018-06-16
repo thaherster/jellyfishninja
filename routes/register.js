@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
-import {check,validationResult} from 'express-validator/check'
-import {matchedData} from 'express-validator/filter'
+var check = require('express-validator/check').check,
+    validationResult = require('express-validator/check').validationResult;
+var matchedData = require('express-validator/filter').matchedData
 var firebase = require('firebase/app'); require('firebase/auth');
 var passport = require('passport');
-import {authenticationMiddleware} from '../auth/authMiddlewares'
-
+var authenticationMiddleware = require('../auth/authMiddlewares').authenticationMiddleware;
 
 /* GET users listing. */
 router.get('/',authenticationMiddleware, function(req, res, next) {

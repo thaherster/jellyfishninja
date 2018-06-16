@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-import {authenticationMiddleware} from '../auth/authMiddlewares'
+var authenticationMiddleware = require('../auth/authMiddlewares').authenticationMiddleware;
 
 router.get('/', authenticationMiddleware,function(req, res, next) {
     res.render('dashboard');

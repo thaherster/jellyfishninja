@@ -3,7 +3,6 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 var validator = require('express-validator');
 var bodyParser = require('body-parser');
 var session = require('express-session');
@@ -23,6 +22,7 @@ var config = {
 };
 
 var admin = require("firebase-admin");
+
 
 var serviceAccount = require("./dassfafsfkey");
 
@@ -81,7 +81,6 @@ var paymentRouter = require('./routes/payment');
 var getdashdataRouter = require('./routes/getdashdata');
 
 var app = express();
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -98,6 +97,7 @@ app.use(passport.session());
 
 app.use('*', (req,res,next) => {
     res.locals.title = 'Jellyfish Ninja'
+    next();
 })
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
