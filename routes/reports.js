@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var firebase = require('firebase/app');
+var authenticationMiddleware = require('../auth/authMiddlewares').authenticationMiddleware;
 
 router.get('/',authenticationMiddleware,function(req, res, next) {
 
@@ -16,20 +17,13 @@ router.get('/',authenticationMiddleware,function(req, res, next) {
             projectList.push(project);
         });
         return res.render('reports',
-            { title: 'Jellyfish Ninja',
-                user:req.user.uid,
-                useremail:req.user.email,
+            {
                 projectList:projectList
             });
 
     });
 
 });
-
-function authenticationMiddleware (req, res, next) {
-    if (req.isAuthenticated()) return next();
-    res.redirect('/login')
-}
 
 
 function Project(appname,childKey){

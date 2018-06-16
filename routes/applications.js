@@ -1,20 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var firebase = require('firebase/app');
+var authenticationMiddleware = require('../auth/authMiddlewares').authenticationMiddleware;
 
 router.get('/', authenticationMiddleware,function(req, res, next) {
-    console.log("DASH "+req.user);
-           return res.render('applications',
-               { title: 'Jellyfish Ninja',
-                   user:req.user.uid,
-                   useremail:req.user.email
-               });
+    res.render('applications');
 });
-
-function authenticationMiddleware (req, res, next) {
-    if (req.isAuthenticated()) return next();
-    res.redirect('/login')
-}
 
 
 module.exports = router;

@@ -1,20 +1,25 @@
 var express = require('express');
 var router = express.Router();
-var check = require('express-validator/check').check;
-var validationResult = require('express-validator/check').validationResult;
+var check = require('express-validator/check').check,
+    validationResult = require('express-validator/check').validationResult;
 var matchedData = require('express-validator/filter').matchedData;
 var firebase = require('firebase/app'); require('firebase/auth');
 var passport = require('passport');
+var authenticationMiddleware = require('../auth/authMiddlewares').authenticationMiddleware;
 
 
 
-
-router.get('/',authenticationMiddleware, function(req, res, next) {
-        res.render('login', { title: 'Jellyfish Ninja',
-            data:{},
-            errors:{},
-            errorMessage:" "
+router.get('/', authenticationMiddleware, function(req, res, next) {
+    if(req.loggedIn){
+        res.redirect('/dashboard')
+    } else {
+        res.render('login', {
+            title: 'Jellyfish Ninja',
+            data: {},
+            errors: {},
+            errorMessage: " "
         });
+    }
 });
 
 
@@ -62,7 +67,6 @@ router.post('/', [
         if (user) {
             req.logIn(user,function (err) {
                 res.redirect('/dashboard');
-
             });
         }
     });
@@ -77,11 +81,6 @@ passport.deserializeUser(function(user, done) {
 
     done(null, user);
 });
-
-function authenticationMiddleware (req, res, next) {
-    if (req.isAuthenticated()) return res.redirect('/dashboard');
-    next();
-}
 
 
 

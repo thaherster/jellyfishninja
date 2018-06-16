@@ -10,6 +10,7 @@ module.exports = function isAuthenticatedelseLogin(req, res, next) {
 
     } else {
         // No user is signed in.
+        res.redirect('/login');
     }
 
 
@@ -17,7 +18,6 @@ module.exports = function isAuthenticatedelseLogin(req, res, next) {
     // you can do this however you want with whatever variables you set up
 
     // IF A USER ISN'T LOGGED IN, THEN REDIRECT THEM SOMEWHERE
-    res.redirect('/login');
 };
 
 

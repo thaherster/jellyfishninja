@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var check = require('express-validator/check').check;
-var validationResult = require('express-validator/check').validationResult;
-var matchedData = require('express-validator/filter').matchedData;
+var check = require('express-validator/check').check,
+    validationResult = require('express-validator/check').validationResult;
+var matchedData = require('express-validator/filter').matchedData
 var firebase = require('firebase/app'); require('firebase/auth');
 var passport = require('passport');
+var authenticationMiddleware = require('../auth/authMiddlewares').authenticationMiddleware;
 
 /* GET users listing. */
 router.get('/',authenticationMiddleware, function(req, res, next) {
@@ -75,13 +76,6 @@ passport.deserializeUser(function(user, done) {
 
         done(null, user);
 });
-
-
-
-function authenticationMiddleware (req, res, next) {
-    if (req.isAuthenticated()) return res.redirect('/dashboard');
-    next();
-}
 
 
 
