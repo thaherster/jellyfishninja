@@ -5,10 +5,10 @@ var check = require('express-validator/check').check,
 var matchedData = require('express-validator/filter').matchedData
 var firebase = require('firebase/app'); require('firebase/auth');
 var passport = require('passport');
-var authenticationMiddleware = require('../auth/authMiddlewares').authenticationMiddleware;
+var checkLoggedIn = require('../auth/authMiddlewares').checkLoggedIn;
 
 /* GET users listing. */
-router.get('/',authenticationMiddleware, function(req, res, next) {
+router.get('/',checkLoggedIn, function(req, res, next) {
     res.render('register', { title: 'Jellyfish Ninja',
         data:{},
         errors:{},

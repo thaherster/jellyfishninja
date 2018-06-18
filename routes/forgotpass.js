@@ -4,9 +4,9 @@ var check = require('express-validator/check').check,
     validationResult = require('express-validator/check').validationResult;
 var matchedData = require('express-validator/filter').matchedData
 var firebase = require('firebase/app'); require('firebase/auth');
-var authenticationMiddleware = require('../auth/authMiddlewares').authenticationMiddleware;
+var checkLoggedIn = require('../auth/authMiddlewares').checkLoggedIn;
 
-router.get('/',authenticationMiddleware, function(req, res, next) {
+router.get('/',checkLoggedIn, function(req, res, next) {
     res.render('forgotpass', {
         data:{},
         errors:{},
