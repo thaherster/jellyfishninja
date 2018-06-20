@@ -3,14 +3,11 @@ var router = express.Router();
 var path = require("path");
 var firebase = require('firebase/app'); require('firebase/auth');require('firebase/database');require('firebase/storage');
 var multer  = require('multer');
-var storageRef = firebase.storage().ref();
 var dbRef = firebase.database().ref();
 
 var aws = require('aws-sdk');
 var multerS3 = require('multer-s3');
 var myBucket = 'jellyfishninjaapks';
-var myKey = 'AKIAJGFPY5ISORARL7IQ';
-// const googleStorage = require('@google-cloud/storage');
 var fs = require('fs');
 aws.config.loadFromPath('./s3_config.json');
 var pushkey ='';
@@ -43,7 +40,7 @@ router.post('/',upload.single('apkfile'),function(req, res, next) {
 
     var dbRefx = firebase.database().ref().child('Applications/'+user+'/projects');
     dbRefx.once('value', function(snapshot) {
-       if(snapshot.numChildren()<=10)
+       if(snapshot.numChildren()<=50)
        {
            var appInfo = req.body;
            var project = {
